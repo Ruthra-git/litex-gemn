@@ -6,3 +6,7 @@
 - litex_sim booted to the BIOS prompt (litex> is the SoC BIOS, not a Linux shell).
 - Golden model and tests written; spec v0.1 drafted.
 - Next: Day 2, the MAC lane array and control FSM with a cocotb testbench.
+## Day 2
+- gemm_core.v written (LANES 4/8/16); cocotb regression on Icarus, 7 tests x 3 LANES.
+- Chose Icarus over Verilator for cocotb (version support); Verilator used for lint only.
+- Measured: cycles = 64/LANES + 1.

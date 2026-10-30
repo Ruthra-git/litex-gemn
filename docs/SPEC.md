@@ -35,6 +35,12 @@ Compute cycles = ceil(M*N*K / LANES) + fixed overhead. For 4x4x4 at LANES=4:
 64/4 = 16 compute cycles + a few cycles of FSM overhead. Phase 1 total time will be
 dominated by CPU copy time into the buffers, which is the motivation for DMA.
 
+## 6. Timing (v0.2, verified in simulation)
+LANES/4 dot-product units; LANES/4 output elements complete per cycle.
+Compute cycles = 64 / LANES. The `cycles` register reads 64/LANES + 1 (it includes the
+accept cycle): 17 for LANES=4, 9 for LANES=8, 5 for LANES=16.
+Inputs A and B are latched when a start is accepted; later changes to the input buses
+do not affect the running tile. `rst` acts as the soft reset.
 ## 7. Verification plan
 - Unit: cocotb vs the NumPy golden model (bit-exact), plus corner cases.
 - System: firmware on the simulated SoC compares engine output vs a software GEMM.

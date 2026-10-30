@@ -2,3 +2,9 @@ build/
 __pycache__/
 *.vcd
 *.fst
+sim_build*/
+results.xml
+*.fst
+sim_build*/
+results.xml
+*.fst
