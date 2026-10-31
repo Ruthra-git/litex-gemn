@@ -32,6 +32,7 @@ async def reset(dut):
     dut.rst.value = 1
     dut.start.value = 0
     dut.done_clear.value = 0
+    dut.accumulate.value = 0
     dut.a_flat.value = 0
     dut.b_flat.value = 0
     for _ in range(3):
@@ -40,9 +41,10 @@ async def reset(dut):
     await RisingEdge(dut.clk)
 
 
-async def start_tile(dut, A, B):
+async def start_tile(dut, A, B, acc=0):
     dut.a_flat.value = pack_i8(A)
     dut.b_flat.value = pack_i8(B)
+    dut.accumulate.value = acc
     dut.start.value = 1
     await RisingEdge(dut.clk)      # the edge that accepts start
     dut.start.value = 0
@@ -57,8 +59,8 @@ async def wait_done(dut):
     raise AssertionError("timeout waiting for done")
 
 
-async def run_tile(dut, A, B):
-    await start_tile(dut, A, B)
+async def run_tile(dut, A, B, acc=0):
+    await start_tile(dut, A, B, acc)
     await wait_done(dut)
     return unpack_i32(int(dut.c_flat.value)), int(dut.cycles.value)
 
@@ -150,3 +152,30 @@ async def test_reset_mid_run(dut):
         and int(dut.error.value) == 0
     got, _ = await run_tile(dut, A, B)
     assert (got == C.astype(np.int64)).all(), "core must work after a mid-run reset"
+
+
+@cocotb.test()
+async def test_accumulate(dut):
+    await reset(dut)
+    vecs = make_vectors(n_random=6)[-6:]
+    total = None
+    for n, (A, B, C) in enumerate(vecs):
+        got, _ = await run_tile(dut, A, B, acc=(1 if n > 0 else 0))
+        total = C.astype(np.int64) if n == 0 else total + C.astype(np.int64)
+        assert (got == total).all(), f"accumulate step {n} mismatch:\n{got}\nexpected\n{total}"
+    # acc=0 afterwards must overwrite, not add
+    A, B, C = make_vectors(n_random=1)[-1]
+    got, _ = await run_tile(dut, A, B, acc=0)
+    assert (got == C.astype(np.int64)).all(), "acc=0 must overwrite the previous result"
+
+
+@cocotb.test()
+async def test_accumulate_latched_at_start(dut):
+    await reset(dut)
+    (A1, B1, C1), (A2, B2, C2) = make_vectors(n_random=2)[-2:]
+    await run_tile(dut, A1, B1, acc=0)
+    await start_tile(dut, A2, B2, acc=0)
+    dut.accumulate.value = 1             # changing it after accept must not matter
+    await wait_done(dut)
+    got = unpack_i32(int(dut.c_flat.value))
+    assert (got == C2.astype(np.int64)).all(), "accumulate must be latched at start accept"

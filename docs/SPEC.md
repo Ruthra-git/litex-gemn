@@ -53,3 +53,14 @@ caching or prefetching, multi-engine arbitration.
 ## 9. Assumptions and known limitations
 - Results come from cycle-accurate simulation with an ideal memory model.
 - Fmax values are estimates from nextpnr on a chosen device, not measured silicon.
+## Accumulate (v0.3)
+CTRL.ACCUMULATE is latched when a start is accepted. 0: C = A*B. 1: C = C + A*B.
+Accumulation wraps in two's complement; one tile adds at most 65536 in magnitude, so
+wrap needs more than 32,000 accumulations. C is only valid when DONE is set.
+
+## Bus behavior (v0.3)
+Wishbone B4 classic, 32-bit, one transfer = access cycle + ack cycle. Byte enables
+are honored on A and B writes. CTRL writes honor only byte lane 0 and replace the
+ACCUMULATE and IRQ_EN bits with the written values. Writes to C and read-only
+registers are ignored. Unmapped words read 0.
+IRQ = DONE & IRQ_EN (level-sensitive); clear it with CTRL.DONE_CLEAR.
