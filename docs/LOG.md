@@ -19,3 +19,10 @@
 - BIOS smoke test transcript in docs/bios_smoke.txt.
 - Issues/lint notes: <paste anything you hit>
 - Next: Day 4, bare-metal firmware benchmark.
+
+## Day 4
+- Firmware built from LiteX demo scaffold; .bss moved to main RAM; memcmp replaced with a local word compare.
+- PIO baseline passes (known answers, 200 random tiles, N=4..32) at LANES=4 and 16.
+- Result: 4x4 tile 733 cycles vs 1100 naive and 485 unrolled C. Data movement is 96 percent of the tile time, so LANES has no visible effect.
+- Open: load/read cost asymmetry and driver overhead not yet profiled; build an optimized PIO baseline first thing on Day 5.
+- Next: Day 5, DMA master with cocotb bus-memory model.

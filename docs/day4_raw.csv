@@ -1,0 +1,36 @@
+CSV,tile,4,4,1100,485,733,17
+CSV,size,4,4,1110,883,1
+CSV,size,4,8,7570,5263,1
+CSV,size,4,16,56675,39337,1
+CSV,size,4,32,439906,287568,1
+CSV,tile,16,4,1100,485,733,5
+CSV,size,16,4,1110,871,1
+CSV,size,16,8,7570,5160,1
+CSV,size,16,16,56675,38509,1
+CSV,size,16,32,439906,280925,1
+ID ok, LANES=8, tile=4, version=0x0003, base=0x90000000
+known-answer tests: PASS
+random 4x4 tiles (200): PASS
+timer read overhead: 21 cycles (subtracted from results)
+4x4 tile, average cycles over 100 runs (LANES=8):
+  hw: clear=2 load=475 start=2 wait=26 read=228  total=733
+  engine-internal cycles (CYCLES reg) = 9
+  sw naive=1100  sw unrolled=485
+  speedup vs naive    : 1.50 x
+  speedup vs unrolled : 0.66 x
+  engine-only vs naive: 122.22 x
+CSV,tile,8,4,1100,485,733,9
+N=4 reps=20  sw=1110  hw_pio=883  speedup 1.25 x
+  match=yes
+CSV,size,8,4,1110,883,1
+N=8 reps=10  sw=7570  hw_pio=5263  speedup 1.43 x
+  match=yes
+CSV,size,8,8,7570,5263,1
+N=16 reps=3  sw=56675  hw_pio=39337  speedup 1.44 x
+  match=yes
+CSV,size,8,16,56675,39337,1
+N=32 reps=1  sw=439906  hw_pio=287568  speedup 1.52 x
+  match=yes
+CSV,size,8,32,439906,287568,1
+BENCH DONE
+RESULT: PASS
