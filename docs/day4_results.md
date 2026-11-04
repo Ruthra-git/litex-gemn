@@ -40,3 +40,6 @@ All hardware results matched the software reference exactly. Speedups are agains
 - Wait is 26 cycles at both LANES values. A plausible reason is that two status polls (about 13 cycles each) is the minimum; not verified.
 - Numbers come from simulation with ideal memory; real SDRAM or DDR latency would change absolute values.
 - Timer reads add overhead; it is subtracted but not zero-error.
+
+## Addendum (Day 5): superseded findings
+The Day 4 tile-load path used memcpy, which in this libc is a real function call (about 8 calls per tile). After replacing it with an aligned load, the 4x4 load phase fell from 475 to 71 cycles and the tile total from 733 to 329. Superseded conclusions: "slower than unrolled software" (now 1.47x faster), "PIO ceiling about 1.56x" (corrected ceiling about 3.6x over naive), and the load/read asymmetry (explained). Corrected numbers are in docs/day5_results.md.

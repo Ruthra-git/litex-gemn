@@ -42,6 +42,9 @@ async def reset(dut):
     dut.wb_adr.value = 0
     dut.wb_dat_w.value = 0
     dut.wb_sel.value = 0xF
+    dut.m_ack.value = 0
+    dut.m_err.value = 0
+    dut.m_dat_r.value = 0
     for _ in range(3):
         await RisingEdge(dut.clk)
     dut.rst.value = 0
@@ -112,7 +115,7 @@ async def test_id_and_info(dut):
     info = await rd(dut, INFO)
     assert (info & 0xFF) == LANES
     assert ((info >> 8) & 0xFF) == 4
-    assert (info >> 16) == 0x0003
+    assert (info >> 16) == 0x0005
 
 
 @cocotb.test()

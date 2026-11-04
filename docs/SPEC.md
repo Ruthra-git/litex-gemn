@@ -64,3 +64,19 @@ are honored on A and B writes. CTRL writes honor only byte lane 0 and replace th
 ACCUMULATE and IRQ_EN bits with the written values. Writes to C and read-only
 registers are ignored. Unmapped words read 0.
 IRQ = DONE & IRQ_EN (level-sensitive); clear it with CTRL.DONE_CLEAR.
+
+## DMA (v0.5)
+Descriptor = one 4x4 output tile of a row-major matrix. Registers (byte offsets): DMA_CTRL 0xC0
+(bit0 START pulse, bit1 ACC_FIRST), DMA_STATUS 0xC4 (bit0 BUSY, bit1 DONE, bit2 ERROR, [6:4] code),
+A_ADDR 0xC8, A_STRIDE 0xCC, B_ADDR 0xD0, B_STRIDE 0xD4, C_ADDR 0xD8, C_STRIDE 0xDC, K_TILES 0xE0,
+DMA_CYCLES 0xE4. Addresses and strides are byte values and must be 4-byte aligned; K_TILES >= 1.
+Per K step the DMA reads 4 A words (A_ADDR + r*A_STRIDE) and 4 B words (B_ADDR + r*B_STRIDE), runs the
+core (first step overwrites unless ACC_FIRST, later steps accumulate), then advances A_ADDR by 4 bytes and
+B_ADDR by 4*B_STRIDE. After the last step it writes the 16 C words (C_ADDR + r*C_STRIDE + 4*col).
+Errors: 1 misaligned, 2 bus error, 3 timeout (1024 cycles per transfer), 4 bad K_TILES. On error the
+bus is released and ERROR is set. While busy, PIO writes to A/B buffers and PIO start are ignored.
+DONE_CLR clears DMA done/error; SOFT_RESET aborts the DMA. IRQ = IRQ_EN & (DMA_DONE | DMA_ERROR |
+(core DONE and not DMA busy)).
+Cache coherency: the CPU must flush its data cache before starting a DMA and after it completes.
+Measured model (RTL, ideal memory): DMA cycles = 50 + K * (core_cycles + 27); on the simulated SoC the
+K=1 LANES=4 tile took 185 cycles (effective bus latency about 4.8 cycles per transfer).

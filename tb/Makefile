@@ -6,12 +6,15 @@ DUT ?= core
 ifeq ($(DUT),core)
 TOPLEVEL = gemm_core
 MODULE   = test_gemm_core
-else
+else ifeq ($(DUT),wb)
 TOPLEVEL = gemm_wb
 MODULE   = test_gemm_wb
+else
+TOPLEVEL = gemm_wb
+MODULE   = test_gemm_dma
 endif
 
-VERILOG_SOURCES = $(shell pwd)/../rtl/gemm_core.v $(shell pwd)/../rtl/gemm_wb.v
+VERILOG_SOURCES = $(shell pwd)/../rtl/gemm_core.v $(shell pwd)/../rtl/gemm_dma.v $(shell pwd)/../rtl/gemm_wb.v
 COMPILE_ARGS += -P$(TOPLEVEL).LANES=$(LANES)
 SIM_BUILD = sim_build_$(DUT)_L$(LANES)
 include $(shell cocotb-config --makefiles)/Makefile.sim

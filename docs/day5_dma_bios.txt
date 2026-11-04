@@ -1,0 +1,43 @@
+
+--============== Console ===============--
+
+litex> mem read 0x900000000 4
+Command not found
+litex> mem_read 0x900000000 4
+Error: invalid address
+litex> mem_read 0x900000090 4
+Error: invalid address
+litex> mem_read 0x90000090 4
+Memory dump:
+0x90000090  04 04 05 00                                      ....           
+litex> mem_write 0x400200000 0x04030201
+Error: invalid address
+litex> mem_write 0x40020000 0x04030201
+litex> mem_write 0x40020004 0x08070605
+litex> mem_write 0x40020008 0x0c0b0a09
+litex> mem_write 0x4002000c 0x100f0e0d
+litex> mem_write 0x40020100 0x00000001
+litex> mem_write 0x40020104 0x00000100
+litex> mem_write 0x40020108 0x00010000
+litex> mem_write 0x4002010c 0x01000000
+litex> mem_write 0x900000c8 0x40020000
+litex> mem_write 0x900000cc 4
+litex> mem_write 0x900000d0 0x40020100
+litex> mem_write 0x900000d4 4
+litex> mem_write 0x900000d8 0x40020200
+litex> mem_write 0x900000dc 16
+litex> mem_write 0x900000e0 1
+litex> mem_write 0x90000080 0x10
+litex> mem_write 0x900000c0 0x1
+litex> mem_read 0x900000c4 4
+Memory dump:
+0x900000c4  02 00 00 00                                      ....           
+litex>  mem_read 0x900000e4 4
+Memory dump:
+0x900000e4  b9 00 00 00                                      ....           
+litex> mem_read 0x40020200 64
+Memory dump:
+0x40020200  01 00 00 00 02 00 00 00 03 00 00 00 04 00 00 00  ................
+0x40020210  05 00 00 00 06 00 00 00 07 00 00 00 08 00 00 00  ................
+0x40020220  09 00 00 00 0a 00 00 00 0b 00 00 00 0c 00 00 00  ................
+0x40020230  0d 00 00 00 0e 00 00 00 0f 00 00 00 10 00 00 00  ................

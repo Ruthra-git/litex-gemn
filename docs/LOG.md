@@ -26,3 +26,10 @@
 - Result: 4x4 tile 733 cycles vs 1100 naive and 485 unrolled C. Data movement is 96 percent of the tile time, so LANES has no visible effect.
 - Open: load/read cost asymmetry and driver overhead not yet profiled; build an optimized PIO baseline first thing on Day 5.
 - Next: Day 5, DMA master with cocotb bus-memory model.
+
+## Day 5
+- PIO baseline corrected: memcpy in ld32 was a real call. 4x4 load 475 -> 71 cycles, total 733 -> 329; PIO now 3.34x vs naive and 1.47x vs unrolled SW.
+- gemm_dma.v: strided tile fetch, hardware K-loop with accumulate, single C write-back, error codes, timeout, IRQ.
+- cocotb: bus-memory model; 93 test runs pass (9 core + 10 wb + 12 dma at LANES 4/8/16). DMA cycles fit 50 + K*(core+27) exactly.
+- SoC BIOS smoke test passed: identity matrix via DMA from main RAM; DMA_CYCLES 185 on the SoC vs 94 ideal, so effective bus latency is about 4.8 cycles/transfer.
+- Open: cache flush handling and IRQ on the SoC (Day 6); LANES=8/16 firmware runs; blocked/unrolled SW baseline for larger N.

@@ -16,8 +16,8 @@ class GemmSimSoC(_OrigSimSoC):
     def __init__(self, *args, **kwargs):
         _OrigSimSoC.__init__(self, *args, **kwargs)
         self.gemm = GemmWB(self.platform, lanes=int(os.environ.get("GEMM_LANES", "4")))
-        self.bus.add_slave("gemm", self.gemm.bus,
-            SoCRegion(origin=GEMM_BASE, size=GEMM_SIZE, cached=False))
+        self.bus.add_slave("gemm", self.gemm.bus,SoCRegion(origin=GEMM_BASE, size=GEMM_SIZE, cached=False))
+        self.bus.add_master(name="gemm_dma", master=self.gemm.dma_bus)    
         self.irq.add("gemm", use_loc_if_exists=True)
 
 

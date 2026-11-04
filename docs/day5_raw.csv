@@ -1,0 +1,32 @@
+# PIO firmware (LANES=4, version 0x0003 build): kind,lanes,n,sw_naive,sw_unrolled,hw_total,engine_cycles
+CSV,tile,4,4,1101,486,329,17
+CSV,size,4,4,1111,483,1
+CSV,size,4,8,7577,2038,1
+CSV,size,4,16,56694,11537,1
+CSV,size,4,32,439963,75610,1
+CSV,fast,4,4,1115,360,1
+CSV,fast,4,8,7580,1615,1
+CSV,fast,4,16,56697,9705,1
+CSV,fast,4,32,439966,66248,1
+# DMA cycles (cocotb, ideal memory): DMA,lanes,k_steps,latency,cycles
+DMA,4,1,1,94
+DMA,4,2,1,138
+DMA,4,4,1,226
+DMA,4,8,1,402
+DMA,8,1,1,86
+DMA,8,2,1,122
+DMA,8,4,1,194
+DMA,8,8,1,338
+DMA,16,1,1,82
+DMA,16,2,1,114
+DMA,16,4,1,178
+DMA,16,8,1,306
+DMA,4,2,2,170
+DMA,4,2,5,266
+DMA,4,2,9,394
+DMA,8,2,2,154
+DMA,8,2,5,250
+DMA,8,2,9,378
+DMA,16,2,2,146
+DMA,16,2,5,242
+DMA,16,2,9,370
