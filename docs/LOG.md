@@ -33,3 +33,6 @@
 - cocotb: bus-memory model; 93 test runs pass (9 core + 10 wb + 12 dma at LANES 4/8/16). DMA cycles fit 50 + K*(core+27) exactly.
 - SoC BIOS smoke test passed: identity matrix via DMA from main RAM; DMA_CYCLES 185 on the SoC vs 94 ideal, so effective bus latency is about 4.8 cycles/transfer.
 - Open: cache flush handling and IRQ on the SoC (Day 6); LANES=8/16 firmware runs; blocked/unrolled SW baseline for larger N.
+- Day 6 first firmware run: DMA known-answer and error-path tests pass; xfers 24/48/80; DMA cycles 74/188/340 (36 + 38*K); average stall 1.08-1.11; coherency probe: 16 stale words without flush, 0 after.
+- Failures found: IRQ wait timed out (CPU pending register is probably masked; mask was 0) and IRQ-mode benchmark cells were timeouts; combined match flag hid per-method results; CPU-side baselines slower than Day 5 (suspected cache conflicts from array layout).
+- Fixes in day6_main.c v2: own ISR with event counter, per-method match flags, skewed buffer pool, flush-cost measurement.

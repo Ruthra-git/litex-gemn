@@ -1,6 +1,9 @@
-// gemm_dma.v v0.5 - descriptor-driven DMA master for gemm_core.
+// gemm_dma.v v0.6 - descriptor-driven DMA master for gemm_core.
 // One descriptor = one 4x4 output tile: K_TILES steps of (fetch A tile, fetch B tile, compute,
 // accumulate), then one write-back of the 16 C words. Byte addresses; classic Wishbone master.
+// v0.6: consecutive transfers within a phase are issued back-to-back (CYC/STB stay high and the
+// address changes in the cycle after ACK); two counters per descriptor: xfers (completed bus
+// transfers) and waits (cycles with STB high and no ACK/ERR).
 `default_nettype none
 
 module gemm_dma #(
@@ -25,6 +28,8 @@ module gemm_dma #(
     output reg          error,
     output reg  [2:0]   err_code,
     output reg  [31:0]  cycles,
+    output reg  [31:0]  xfers,
+    output reg  [31:0]  waits,
 
     output reg          core_clr,
     output reg          core_start,
@@ -59,11 +64,12 @@ module gemm_dma #(
     reg [31:0] cur_adr, row_base;
     reg [4:0]  idx;
     reg [15:0] to_cnt;
+    wire [3:0] idx_n = idx[3:0] + 4'd1;
 
     always @(posedge clk) begin
         if (rst) begin
             st <= S_IDLE;   busy <= 1'b0;  done <= 1'b0;  error <= 1'b0;
-            err_code <= 3'd0;  cycles <= 32'd0;
+            err_code <= 3'd0;  cycles <= 32'd0;  xfers <= 32'd0;  waits <= 32'd0;
             core_clr <= 1'b0;  core_start <= 1'b0;  core_acc <= 1'b0;
             ld_a <= 1'b0;  ld_b <= 1'b0;  ld_idx <= 2'd0;  ld_data <= 32'd0;
             m_cyc <= 1'b0;  m_stb <= 1'b0;  m_we <= 1'b0;
@@ -81,12 +87,13 @@ module gemm_dma #(
                 done <= 1'b0;  error <= 1'b0;  err_code <= 3'd0;
             end
             if (busy) cycles <= cycles + 32'd1;
+            if (busy && m_stb && !m_ack && !m_err) waits <= waits + 32'd1;
 
             case (st)
             S_IDLE: begin
                 if (start) begin
                     busy <= 1'b1;  done <= 1'b0;  error <= 1'b0;  err_code <= 3'd0;
-                    cycles <= 32'd0;
+                    cycles <= 32'd0;  xfers <= 32'd0;  waits <= 32'd0;
                     a_ptr <= a_addr;  b_ptr <= b_addr;  c_ptr <= c_addr;
                     a_str <= a_stride;  b_str <= b_stride;  c_str <= c_stride;
                     kcnt <= k_tiles;  first <= 1'b1;  accf <= acc_first;
@@ -105,7 +112,7 @@ module gemm_dma #(
                 end
             end
 
-            // ---- fetch the 4 words of the A tile ----
+            // ---- A tile: first request goes through S_A_REQ, the rest are back-to-back ----
             S_A_REQ: begin
                 m_cyc <= 1'b1;  m_stb <= 1'b1;  m_we <= 1'b0;
                 m_adr <= cur_adr;  m_sel <= 4'hF;  to_cnt <= 16'd0;
@@ -113,12 +120,14 @@ module gemm_dma #(
             end
             S_A_WAIT: begin
                 if (m_ack) begin
-                    m_cyc <= 1'b0;  m_stb <= 1'b0;
+                    xfers <= xfers + 32'd1;
                     ld_a <= 1'b1;  ld_idx <= idx[1:0];  ld_data <= m_dat_r;
+                    to_cnt <= 16'd0;
                     if (idx == 5'd3) begin
-                        idx <= 5'd0;  cur_adr <= b_ptr;  st <= S_B_REQ;
+                        m_adr <= b_ptr;  cur_adr <= b_ptr;  idx <= 5'd0;  st <= S_B_WAIT;
                     end else begin
-                        idx <= idx + 5'd1;  cur_adr <= cur_adr + a_str;  st <= S_A_REQ;
+                        m_adr <= cur_adr + a_str;  cur_adr <= cur_adr + a_str;
+                        idx <= idx + 5'd1;
                     end
                 end else if (m_err) begin
                     m_cyc <= 1'b0;  m_stb <= 1'b0;
@@ -131,7 +140,7 @@ module gemm_dma #(
                 end
             end
 
-            // ---- fetch the 4 words of the B tile ----
+            // ---- B tile ----
             S_B_REQ: begin
                 m_cyc <= 1'b1;  m_stb <= 1'b1;  m_we <= 1'b0;
                 m_adr <= cur_adr;  m_sel <= 4'hF;  to_cnt <= 16'd0;
@@ -139,12 +148,14 @@ module gemm_dma #(
             end
             S_B_WAIT: begin
                 if (m_ack) begin
-                    m_cyc <= 1'b0;  m_stb <= 1'b0;
+                    xfers <= xfers + 32'd1;
                     ld_b <= 1'b1;  ld_idx <= idx[1:0];  ld_data <= m_dat_r;
+                    to_cnt <= 16'd0;
                     if (idx == 5'd3) begin
-                        idx <= 5'd0;  st <= S_CLR;
+                        m_cyc <= 1'b0;  m_stb <= 1'b0;  idx <= 5'd0;  st <= S_CLR;
                     end else begin
-                        idx <= idx + 5'd1;  cur_adr <= cur_adr + b_str;  st <= S_B_REQ;
+                        m_adr <= cur_adr + b_str;  cur_adr <= cur_adr + b_str;
+                        idx <= idx + 5'd1;
                     end
                 end else if (m_err) begin
                     m_cyc <= 1'b0;  m_stb <= 1'b0;
@@ -198,18 +209,21 @@ module gemm_dma #(
             end
             S_C_WAIT: begin
                 if (m_ack) begin
-                    m_cyc <= 1'b0;  m_stb <= 1'b0;  m_we <= 1'b0;
+                    xfers <= xfers + 32'd1;
+                    to_cnt <= 16'd0;
                     if (idx == 5'd15) begin
-                        st <= S_FINISH;
+                        m_cyc <= 1'b0;  m_stb <= 1'b0;  m_we <= 1'b0;  st <= S_FINISH;
                     end else begin
                         idx <= idx + 5'd1;
+                        m_dat_w <= c_flat[{idx_n, 5'd0} +: 32];
                         if (idx[1:0] == 2'd3) begin
                             row_base <= row_base + c_str;
                             cur_adr  <= row_base + c_str;
+                            m_adr    <= row_base + c_str;
                         end else begin
                             cur_adr <= cur_adr + 32'd4;
+                            m_adr   <= cur_adr + 32'd4;
                         end
-                        st <= S_C_REQ;
                     end
                 end else if (m_err) begin
                     m_cyc <= 1'b0;  m_stb <= 1'b0;  m_we <= 1'b0;

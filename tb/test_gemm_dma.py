@@ -325,3 +325,41 @@ async def test_soft_reset_mid_dma(dut):
     assert (st & DS_DONE) and not (st & DS_ERROR)
     exp = (A.astype(np.int64) @ B.astype(np.int64))[0:4, 0:4]
     assert (mem.read_i32_matrix(C_MEM, 4, 4, 4 * n) == exp).all()
+
+
+DMA_XFERS, DMA_WAITS = 58, 59
+
+
+@cocotb.test()
+async def test_dma_counters(dut):
+    mem = await setup(dut)
+    rng = np.random.default_rng(9)
+    n = 8
+    A, B = rand_i8(rng, (n, n)), rand_i8(rng, (n, n))
+    mem.write_i8_matrix(A_MEM, A, n)
+    mem.write_i8_matrix(B_MEM, B, n)
+    k = n // 4
+    for lat in (1, 3):
+        mem.latency = lat
+        st = await run_desc(dut, A_MEM, n, B_MEM, n, C_MEM, 4 * n, k)
+        assert (st & DS_DONE) and not (st & DS_ERROR)
+        xfers = await rd(dut, DMA_XFERS)
+        waits = await rd(dut, DMA_WAITS)
+        assert xfers == 8 * k + 16, f"xfers {xfers}, expected {8 * k + 16}"
+        assert waits == xfers * lat, f"waits {waits}, expected xfers*latency = {xfers * lat}"
+        dut._log.info(f"latency {lat}: xfers={xfers} waits={waits}")
+
+
+@cocotb.test()
+async def test_back_to_back_cycles(dut):
+    mem = await setup(dut)
+    rng = np.random.default_rng(10)
+    A, B = rand_i8(rng, (4, 4)), rand_i8(rng, (4, 4))
+    mem.write_i8_matrix(A_MEM, A, 4)
+    mem.write_i8_matrix(B_MEM, B, 4)
+    st = await run_desc(dut, A_MEM, 4, B_MEM, 4, C_MEM, 16, 1)
+    assert (st & DS_DONE) and not (st & DS_ERROR)
+    cyc = await rd(dut, DMA_CYC)
+    core = 64 // LANES + 1
+    dut._log.info(f"back-to-back single tile: DMA cycles = {cyc} (v0.5 design: {77 + core}, LANES={LANES})")
+    assert cyc <= 65 + core, f"cycles {cyc} should be well below the v0.5 value {77 + core}"

@@ -115,7 +115,7 @@ async def test_id_and_info(dut):
     info = await rd(dut, INFO)
     assert (info & 0xFF) == LANES
     assert ((info >> 8) & 0xFF) == 4
-    assert (info >> 16) == 0x0005
+    assert (info >> 16) == 0x0006
 
 
 @cocotb.test()

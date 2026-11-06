@@ -31,7 +31,7 @@ module gemm_wb #(
 );
     localparam [7:0]  LANES8   = LANES;
     localparam [31:0] ID_VAL   = 32'h47454D4D;               // "GEMM"
-    localparam [31:0] INFO_VAL = {16'h0005, 8'd4, LANES8};   // version, tile dim, LANES
+    localparam [31:0] INFO_VAL = {16'h0006, 8'd4, LANES8};   // version, tile dim, LANES
 
     reg [127:0] a_buf, b_buf;
     reg         acc_en, irq_en;
@@ -47,6 +47,7 @@ module gemm_wb #(
     wire         dma_busy, dma_done, dma_error;
     wire [2:0]   dma_err;
     wire [31:0]  dma_cycles;
+    wire [31:0]  dma_xfers, dma_waits;
     wire         dma_core_clr, dma_core_start, dma_core_acc;
     wire         dma_ld_a, dma_ld_b;
     wire [1:0]   dma_ld_idx;
@@ -90,6 +91,8 @@ module gemm_wb #(
         .error      (dma_error),
         .err_code   (dma_err),
         .cycles     (dma_cycles),
+        .xfers      (dma_xfers),
+        .waits      (dma_waits),
         .core_clr   (dma_core_clr),
         .core_start (dma_core_start),
         .core_acc   (dma_core_acc),
@@ -160,6 +163,8 @@ module gemm_wb #(
                 4'd7:    rdata = d_cs;
                 4'd8:    rdata = {16'd0, d_k};
                 4'd9:    rdata = dma_cycles;
+                4'd10:   rdata = dma_xfers;
+                4'd11:   rdata = dma_waits;
                 default: rdata = 32'd0;
             endcase
         end else if (is_c) begin
