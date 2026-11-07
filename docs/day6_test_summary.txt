@@ -1,19 +1,19 @@
 === DUT=core LANES=4 ===
-                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                194450.01           7.46      26070.86  **
+                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                194450.01           7.34      26474.69  **
 === DUT=core LANES=8 ===
-                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                112770.01           5.02      22456.95  **
+                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                112770.01           4.33      26057.75  **
 === DUT=core LANES=16 ===
-                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                 71930.01           3.83      18779.39  **
+                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                 71930.01           3.35      21452.90  **
 === DUT=wb LANES=4 ===
-                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          79340.01           4.20      18868.32  **
+                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          79340.01           3.76      21096.21  **
 === DUT=wb LANES=8 ===
-                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          70140.01           3.89      18024.59  **
+                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          70140.01           3.36      20845.58  **
 === DUT=wb LANES=16 ===
-                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          65540.01           3.68      17815.46  **
+                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          65540.01           3.23      20269.48  **
 === DUT=dma LANES=4 ===
-                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            328770.01          15.80      20806.38  **
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            328770.01          14.31      22968.00  **
 === DUT=dma LANES=8 ===
-                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            277490.01          14.00      19825.52  **
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            277490.01          13.91      19945.75  **
 === DUT=dma LANES=16 ===
-                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            251850.01          12.58      20020.37  **
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            251850.01          12.85      19592.84  **
 ALL PASSED

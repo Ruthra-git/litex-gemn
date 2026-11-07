@@ -36,3 +36,10 @@
 - Day 6 first firmware run: DMA known-answer and error-path tests pass; xfers 24/48/80; DMA cycles 74/188/340 (36 + 38*K); average stall 1.08-1.11; coherency probe: 16 stale words without flush, 0 after.
 - Failures found: IRQ wait timed out (CPU pending register is probably masked; mask was 0) and IRQ-mode benchmark cells were timeouts; combined match flag hid per-method results; CPU-side baselines slower than Day 5 (suspected cache conflicts from array layout).
 - Fixes in day6_main.c v2: own ISR with event counter, per-method match flags, skewed buffer pool, flush-cost measurement.
+
+## Day 6 (complete)
+- v2 firmware passes on the SoC: all self-checks pass, all five methods match at N=4..64. N=64: DMA 177278 cycles vs PIO 521745, blocked SW 1023084, naive SW 3629589.
+- IRQ failure root cause: the CPU pending register is masked (mask was 0); fixed with a firmware ISR that counts events and masks the level line. Build uses -Wl,--allow-multiple-definition because libbase also defines isr.
+- CPU-side slowdown root cause (consistent with): buffers a multiple of the cache size apart; fixed by a skewed pool layout.
+- Findings: DMA useless at 4x4, crossover between N=4 and 8; interrupt completion costs about 140 cycles per descriptor; flush 137 cycles; engine utilization about 39 percent at N=64.
+- Open: v0.6 unit-test summary; LANES 8/16 firmware runs; overlap of fetch and compute; Day 7 driver.

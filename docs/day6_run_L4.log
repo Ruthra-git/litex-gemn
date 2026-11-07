@@ -1,1 +1,46 @@
-# instatitaion
+
+--============== Liftoff! ==============--
+
+=== litex-gemm Day 6: DMA driver and benchmarks (v2) ===
+ID ok, LANES=4, tile=4, version=0x0006, base=0x90000000, irq line=2
+buffers: A=0x40004000 B=0x40005400 Cs=0x40007800 Ch=0x4000bc00
+timer read overhead: 22 cycles (subtracted from results)
+dcache flush cost: 137 cycles (minimum of 5)
+DMA known-answer tests: PASS
+DMA random 4x4 tiles (100, poll and interrupt wait alternating): PASS
+DMA error path (misaligned descriptor): PASS
+IRQ line (ISR event counting): PASS
+coherency probe: stale words without flush = 16, after flush = 0
+DMA counters (K=1): cycles=74 xfers=24 stall=26 avg_stall=1.08
+CSV,dmactr,4,1,74,24,26
+DMA counters (K=4): cycles=188 xfers=48 stall=53 avg_stall=1.10
+CSV,dmactr,4,4,188,48,53
+DMA counters (K=8): cycles=340 xfers=80 stall=89 avg_stall=1.11
+CSV,dmactr,4,8,340,80,89
+N=4 reps=20  sw=1120 blk=412 pio=482 dma=712 dma_irq=914
+  vs naive: blk=2.71x pio=2.32x dma=1.57x dma_irq=1.22x
+  vs blocked: pio=0.85x dma=0.57x dma_irq=0.45x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,4,1120,412,482,712,914,1
+N=8 reps=10  sw=7596 blk=2248 pio=1751 dma=1255 dma_irq=1896
+  vs naive: blk=3.37x pio=4.33x dma=6.05x dma_irq=4.00x
+  vs blocked: pio=1.28x dma=1.79x dma_irq=1.18x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,8,7596,2248,1751,1255,1896,1
+N=16 reps=3  sw=56746 blk=16069 pio=9490 dma=4446 dma_irq=6755
+  vs naive: blk=3.53x pio=5.97x dma=12.76x dma_irq=8.40x
+  vs blocked: pio=1.69x dma=3.61x dma_irq=2.37x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,16,56746,16069,9490,4446,6755,1
+N=32 reps=1  sw=440205 blk=123172 pio=63566 dma=25574 dma_irq=34637
+  vs naive: blk=3.57x pio=6.92x dma=17.21x dma_irq=12.70x
+  vs blocked: pio=1.93x dma=4.81x dma_irq=3.55x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,32,440205,123172,63566,25574,34637,1
+N=64 reps=1  sw=3629589 blk=1023084 pio=521745 dma=177278 dma_irq=212197
+  vs naive: blk=3.54x pio=6.95x dma=20.47x dma_irq=17.10x
+  vs blocked: pio=1.96x dma=5.77x dma_irq=4.82x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,64,3629589,1023084,521745,177278,212197,1
+BENCH DONE
+RESULT: PASS

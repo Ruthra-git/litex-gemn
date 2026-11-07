@@ -80,3 +80,9 @@ DONE_CLR clears DMA done/error; SOFT_RESET aborts the DMA. IRQ = IRQ_EN & (DMA_D
 Cache coherency: the CPU must flush its data cache before starting a DMA and after it completes.
 Measured model (RTL, ideal memory): DMA cycles = 50 + K * (core_cycles + 27); on the simulated SoC the
 K=1 LANES=4 tile took 185 cycles (effective bus latency about 4.8 cycles per transfer).
+
+## v0.6 additions
+- INFO version 0x0006. New read-only registers: DMA_XFERS (0xE8) = bus transfers completed by the last descriptor; DMA_WAITS (0xEC) = cycles with STB high and no ACK/ERR. Both reset when a descriptor starts.
+- Consecutive transfers inside a phase (A tile, B tile, C write-back) are issued back-to-back: CYC and STB stay high and only the address changes. The DMA can therefore hold the shared bus for up to 16 consecutive transfers (the C write-back).
+- Measured on the simulated SoC (LANES=4): DMA cycles = 36 + 38*K; average stall 1.08-1.11 cycles per transfer.
+- Software contract: the interrupt line is level-sensitive (IRQ_EN & (DMA_DONE | DMA_ERROR | core DONE when idle)). The ISR must mask the line or clear DONE; clear DONE before re-arming. The CPU data cache must be flushed before starting a DMA (A and B) and after completion (C): without the flush 16 of 16 result words were stale. A flush costs 137 cycles on this CPU.
