@@ -1,0 +1,520 @@
+INFO:SoC:        __   _ __      _  __  
+INFO:SoC:       / /  (_) /____ | |/_/  
+INFO:SoC:      / /__/ / __/ -_)>  <    
+INFO:SoC:     /____/_/\__/\__/_/|_|  
+INFO:SoC:  Build your hardware, easily!
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Creating SoC... (2026-11-08 12:20:35)
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:FPGA device : SIM.
+INFO:SoC:System clock: 1.000MHz.
+INFO:SoCBusHandler:Creating Bus Handler...
+INFO:SoCBusHandler:32-bit wishbone Bus, 4.0GiB Address Space.
+INFO:SoCBusHandler:Adding reserved Bus Regions...
+INFO:SoCBusHandler:Bus Handler created.
+INFO:SoCCSRHandler:Creating CSR Handler...
+INFO:SoCCSRHandler:32-bit CSR Bus, 32-bit Aligned, 16.0KiB Address Space, 2048B Paging, big Ordering (Up to 32 Locations).
+INFO:SoCCSRHandler:Adding reserved CSRs...
+INFO:SoCCSRHandler:CSR Handler created.
+INFO:SoCIRQHandler:Creating IRQ Handler...
+INFO:SoCIRQHandler:IRQ Handler (up to 32 Locations).
+INFO:SoCIRQHandler:Adding reserved IRQs...
+INFO:SoCIRQHandler:IRQ Handler created.
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Initial SoC:
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:32-bit wishbone Bus, 4.0GiB Address Space.
+INFO:SoC:32-bit CSR Bus, 32-bit Aligned, 16.0KiB Address Space, 2048B Paging, big Ordering (Up to 32 Locations).
+INFO:SoC:IRQ Handler (up to 32 Locations).
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Controller ctrl added.
+INFO:SoC:CPU vexriscv added.
+INFO:SoC:CPU vexriscv adding IO Region 0 at 0x80000000 (Size: 0x80000000).
+INFO:SoCBusHandler:io0 Region added at Origin: 0x80000000, Size: 0x80000000, Mode:  RW, Cached: False, Linker: False.
+INFO:SoC:CPU vexriscv overriding sram mapping from 0x01000000 to 0x10000000.
+INFO:SoC:CPU vexriscv setting reset address to 0x00000000.
+INFO:SoC:CPU vexriscv adding Bus Master(s).
+INFO:SoCBusHandler:cpu_bus0 added as Bus Master.
+INFO:SoCBusHandler:cpu_bus1 added as Bus Master.
+INFO:SoC:CPU vexriscv adding Interrupt(s).
+INFO:SoC:CPU vexriscv adding SoC components.
+INFO:SoCBusHandler:rom Region added at Origin: 0x00000000, Size: 0x00020000, Mode:  RX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:rom added as Bus Slave.
+INFO:SoC:RAM rom added Origin: 0x00000000, Size: 0x00020000, Mode:  RX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:sram Region added at Origin: 0x10000000, Size: 0x00002000, Mode: RWX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:sram added as Bus Slave.
+INFO:SoC:RAM sram added Origin: 0x10000000, Size: 0x00002000, Mode: RWX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:main_ram Region added at Origin: 0x40000000, Size: 0x00040000, Mode: RWX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:main_ram added as Bus Slave.
+INFO:SoC:RAM main_ram added Origin: 0x40000000, Size: 0x00040000, Mode: RWX, Cached:  True, Linker: False.
+INFO:SoCIRQHandler:uart IRQ allocated at Location 0.
+INFO:SoCIRQHandler:timer0 IRQ allocated at Location 1.
+INFO:SoCBusHandler:gemm Region added at Origin: 0x90000000, Size: 0x00000100, Mode:  RW, Cached: False, Linker: False.
+INFO:SoCBusHandler:gemm added as Bus Slave.
+INFO:SoCBusHandler:gemm_dma added as Bus Master.
+INFO:SoCIRQHandler:gemm IRQ allocated at Location 2.
+INFO:SoC:        __   _ __      _  __  
+INFO:SoC:       / /  (_) /____ | |/_/  
+INFO:SoC:      / /__/ / __/ -_)>  <    
+INFO:SoC:     /____/_/\__/\__/_/|_|  
+INFO:SoC:  Build your hardware, easily!
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Creating SoC... (2026-11-08 12:20:35)
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:FPGA device : SIM.
+INFO:SoC:System clock: 1.000MHz.
+INFO:SoCBusHandler:Creating Bus Handler...
+INFO:SoCBusHandler:32-bit wishbone Bus, 4.0GiB Address Space.
+INFO:SoCBusHandler:Adding reserved Bus Regions...
+INFO:SoCBusHandler:Bus Handler created.
+INFO:SoCCSRHandler:Creating CSR Handler...
+INFO:SoCCSRHandler:32-bit CSR Bus, 32-bit Aligned, 16.0KiB Address Space, 2048B Paging, big Ordering (Up to 32 Locations).
+INFO:SoCCSRHandler:Adding reserved CSRs...
+INFO:SoCCSRHandler:CSR Handler created.
+INFO:SoCIRQHandler:Creating IRQ Handler...
+INFO:SoCIRQHandler:IRQ Handler (up to 32 Locations).
+INFO:SoCIRQHandler:Adding reserved IRQs...
+INFO:SoCIRQHandler:IRQ Handler created.
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Initial SoC:
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:32-bit wishbone Bus, 4.0GiB Address Space.
+INFO:SoC:32-bit CSR Bus, 32-bit Aligned, 16.0KiB Address Space, 2048B Paging, big Ordering (Up to 32 Locations).
+INFO:SoC:IRQ Handler (up to 32 Locations).
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Controller ctrl added.
+INFO:SoC:CPU vexriscv added.
+INFO:SoC:CPU vexriscv adding IO Region 0 at 0x80000000 (Size: 0x80000000).
+INFO:SoCBusHandler:io0 Region added at Origin: 0x80000000, Size: 0x80000000, Mode:  RW, Cached: False, Linker: False.
+INFO:SoC:CPU vexriscv overriding sram mapping from 0x01000000 to 0x10000000.
+INFO:SoC:CPU vexriscv setting reset address to 0x00000000.
+INFO:SoC:CPU vexriscv adding Bus Master(s).
+INFO:SoCBusHandler:cpu_bus0 added as Bus Master.
+INFO:SoCBusHandler:cpu_bus1 added as Bus Master.
+INFO:SoC:CPU vexriscv adding Interrupt(s).
+INFO:SoC:CPU vexriscv adding SoC components.
+INFO:SoCBusHandler:rom Region added at Origin: 0x00000000, Size: 0x00020000, Mode:  RX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:rom added as Bus Slave.
+INFO:SoC:RAM rom added Origin: 0x00000000, Size: 0x00020000, Mode:  RX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:sram Region added at Origin: 0x10000000, Size: 0x00002000, Mode: RWX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:sram added as Bus Slave.
+INFO:SoC:RAM sram added Origin: 0x10000000, Size: 0x00002000, Mode: RWX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:main_ram Region added at Origin: 0x40000000, Size: 0x00040000, Mode: RWX, Cached:  True, Linker: False.
+INFO:SoCBusHandler:main_ram added as Bus Slave.
+INFO:SoC:RAM main_ram added Origin: 0x40000000, Size: 0x00040000, Mode: RWX, Cached:  True, Linker: False.
+INFO:SoCIRQHandler:uart IRQ allocated at Location 0.
+INFO:SoCIRQHandler:timer0 IRQ allocated at Location 1.
+INFO:SoCBusHandler:gemm Region added at Origin: 0x90000000, Size: 0x00000100, Mode:  RW, Cached: False, Linker: False.
+INFO:SoCBusHandler:gemm added as Bus Slave.
+INFO:SoCBusHandler:gemm_dma added as Bus Master.
+INFO:SoCIRQHandler:gemm IRQ allocated at Location 2.
+INFO:SoC:CSR Bridge csr added.
+INFO:SoCBusHandler:csr Region added at Origin: 0xf0000000, Size: 0x00010000, Mode:  RW, Cached: False, Linker: False.
+INFO:SoCBusHandler:csr added as Bus Slave.
+INFO:SoCCSRHandler:csr added as CSR Master.
+INFO:SoCBusHandler:Interconnect: InterconnectShared (3 <-> 5).
+INFO:SoCCSRHandler:ctrl CSR allocated at Location 0.
+INFO:SoCCSRHandler:identifier_mem CSR allocated at Location 1.
+INFO:SoCCSRHandler:timer0 CSR allocated at Location 2.
+INFO:SoCCSRHandler:uart CSR allocated at Location 3.
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:Finalized SoC:
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:32-bit wishbone Bus, 4.0GiB Address Space.
+IO Regions: (1)
+io0                 : Origin: 0x80000000, Size: 0x80000000, Mode:  RW, Cached: False, Linker: False
+Bus Regions: (5)
+rom                 : Origin: 0x00000000, Size: 0x00020000, Mode:  RX, Cached:  True, Linker: False
+sram                : Origin: 0x10000000, Size: 0x00002000, Mode: RWX, Cached:  True, Linker: False
+main_ram            : Origin: 0x40000000, Size: 0x00040000, Mode: RWX, Cached:  True, Linker: False
+gemm                : Origin: 0x90000000, Size: 0x00000100, Mode:  RW, Cached: False, Linker: False
+csr                 : Origin: 0xf0000000, Size: 0x00010000, Mode:  RW, Cached: False, Linker: False
+Bus Masters: (3)
+- cpu_bus0          : rw
+- cpu_bus1          : rw
+- gemm_dma          : rw
+Bus Slaves: (5)
+- rom               : r
+- sram              : rw
+- main_ram          : rw
+- gemm              : rw
+- csr               : rw
+INFO:SoC:32-bit CSR Bus, 32-bit Aligned, 16.0KiB Address Space, 2048B Paging, big Ordering (Up to 32 Locations).
+CSR Locations: (4)
+- ctrl           : 0
+- identifier_mem : 1
+- timer0         : 2
+- uart           : 3
+INFO:SoC:IRQ Handler (up to 32 Locations).
+IRQ Locations: (3)
+- uart   : 0
+- timer0 : 1
+- gemm   : 2
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:SoC Hierarchy:
+INFO:SoC:--------------------------------------------------------------------------------
+INFO:SoC:
+GemmSimSoC
+├── crg (CRG)
+├── bus (SoCBusHandler)
+│    └── _interconnect (InterconnectShared)
+│         ├── arbiter (Arbiter)
+│         │    └── rr (RoundRobin)
+│         ├── decoder (Decoder)
+│         └── timeout (Timeout)
+│              └── waittimer_0 (WaitTimer) [Gen]
+├── csr (SoCCSRHandler)
+├── irq (SoCIRQHandler)
+├── ctrl (SoCController)
+├── cpu (VexRiscv)
+│    └── [BB:VexRiscv]
+├── rom (SRAM)
+├── sram (SRAM)
+├── main_ram (SRAM)
+├── identifier (Identifier)
+├── uart (UART)
+│    ├── ev (EventManager)
+│    │    ├── eventsourcelevel_0 (EventSourceLevel) [Gen]
+│    │    └── eventsourcelevel_1 (EventSourceLevel) [Gen]
+│    ├── phy (RS232PHYModel)
+│    ├── tx_fifo (SyncFIFO)
+│    │    └── fifo (SyncFIFOBuffered)
+│    │         └── fifo (SyncFIFO)
+│    └── rx_fifo (SyncFIFO)
+│         └── fifo (SyncFIFOBuffered)
+│              └── fifo (SyncFIFO)
+├── timer0 (Timer)
+│    └── ev (EventManager)
+│         └── eventsourceprocess_0 (EventSourceProcess) [Gen]
+├── gemm (GemmWB)
+│    └── [BB:gemm_wb]
+├── csr_bridge (Wishbone2CSR)
+│    └── fsm (FSM)
+├── csr_bankarray (CSRBankArray)
+│    ├── csrbank_0 (CSRBank) [Gen]
+│    │    ├── csrstorage_0 (CSRStorage) [Gen]
+│    │    ├── csrstorage_1 (CSRStorage) [Gen]
+│    │    └── csrstatus_0 (CSRStatus) [Gen]
+│    ├── sram_0 (SRAM) [Gen]
+│    ├── csrbank_1 (CSRBank) [Gen]
+│    │    ├── csrstorage_0 (CSRStorage) [Gen]
+│    │    ├── csrstorage_1 (CSRStorage) [Gen]
+│    │    ├── csrstorage_2 (CSRStorage) [Gen]
+│    │    ├── csrstorage_3 (CSRStorage) [Gen]
+│    │    ├── csrstatus_0 (CSRStatus) [Gen]
+│    │    ├── csrstatus_1 (CSRStatus) [Gen]
+│    │    ├── csrstatus_2 (CSRStatus) [Gen]
+│    │    ├── csrstorage_4 (CSRStorage) [Gen]
+│    │    ├── csrstorage_5 (CSRStorage) [Gen]
+│    │    └── csrstatus_3 (CSRStatus) [Gen]
+│    └── csrbank_2 (CSRBank) [Gen]
+│         ├── csrstatus_0 (CSRStatus) [Gen]
+│         ├── csrstatus_1 (CSRStatus) [Gen]
+│         ├── csrstatus_2 (CSRStatus) [Gen]
+│         ├── csrstatus_3 (CSRStatus) [Gen]
+│         ├── csrstorage_0 (CSRStorage) [Gen]
+│         ├── csrstatus_4 (CSRStatus) [Gen]
+│         └── csrstatus_5 (CSRStatus) [Gen]
+└── csr_interconnect (InterconnectShared)
+Legend:
+  [Gen]: Auto-generated instance name.
+  [BB:NAME]: Blackbox instance (verilog Instance).
+
+INFO:SoC:--------------------------------------------------------------------------------
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/libc'
+rm -f -r /home/ruthra/litex-gemm/build/sim/software/include/../picolibc_src
+cp -a /home/ruthra/litex/pythondata-software-picolibc/pythondata_software_picolibc/data /home/ruthra/litex-gemm/build/sim/software/include/../picolibc_src
+if [ -d "/home/ruthra/litex/litex/litex/soc/software/libc/riscv" ]; then \
+	cp /home/ruthra/litex/litex/litex/soc/software/libc/riscv/* /home/ruthra/litex-gemm/build/sim/software/include/../picolibc_src/libc/machine/riscv/ ;\
+fi
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/libc'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/libcompiler_rt'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/libcompiler_rt'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/libbase'
+ CC       console.o
+ CC       timeout.o
+ CC       system.o
+ CC       memtest.o
+ CC       uart.o
+ CC       startup.o
+ CC       i2c.o
+ CC       spiflash.o
+ CC       hyperram.o
+ CC       isr.o
+ AR       libbase.a
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/libbase'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/libfatfs'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/libfatfs'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/liblitespi'
+ CC       spiflash.o
+ CC       spiram.o
+ AR       liblitespi.a
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/liblitespi'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/liblitedram'
+ CC       sdram.o
+ CC       bist.o
+ CC       sdram_dbg.o
+ CC       sdram_spd.o
+ CC       utils.o
+ CC       accessors.o
+ AR       liblitedram.a
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/liblitedram'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/libliteeth'
+ CC       udp.o
+ CC       tftp.o
+ CC       mdio.o
+ CC       dhcp.o
+ CC       sfp.o
+/home/ruthra/litex/litex/litex/soc/software/libliteeth/sfp.c:816:6: warning: no previous prototype for 'sfp_init' [-Wmissing-prototypes]
+  816 | void sfp_init(void) {}
+      |      ^~~~~~~~
+ AR       libliteeth.a
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/libliteeth'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/liblitesdcard'
+ CC       sdcard.o
+ CC       spisdcard.o
+ AR       liblitesdcard.a
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/liblitesdcard'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/liblitesata'
+ CC       sata.o
+ AR       liblitesata.a
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/liblitesata'
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/software/bios'
+ CC       boot.o
+ CC       cmd_bios.o
+ CC       cmd_mem.o
+ CC       cmd_boot.o
+ CC       cmd_i2c.o
+ CC       cmd_spiflash.o
+ CC       cmd_litedram.o
+ CC       cmd_liteeth.o
+ CC       cmd_litesdcard.o
+ CC       cmd_litesata.o
+ CC       sim_debug.o
+ CC       main.o
+ CC       bios.elf
+/usr/lib/gcc/riscv64-unknown-elf/13.2.0/../../../riscv64-unknown-elf/bin/ld: warning: bios.elf has a LOAD segment with RWX permissions
+chmod -x bios.elf
+ OBJCOPY  bios.bin
+chmod -x bios.bin
+python3 -m litex.soc.software.crcfbigen bios.bin --little
+python3 -m litex.soc.software.memusage  bios.elf /home/ruthra/litex-gemm/build/sim/software/bios/../include/generated/regions.ld riscv64-unknown-elf
+
+ROM usage: 23.29KiB 	(18.19%)
+SRAM usage: 0.95KiB 	(11.82%)
+  .data: 0.02KiB
+  .bss: 0.93KiB
+  stack margin: 7.05KiB
+
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/software/bios'
+INFO:SoC:Initializing ROM rom with contents (Size: 0x5d2c).
+INFO:SoC:Auto-Resizing ROM rom from 0x20000 to 0x5d2c.
+make: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware'
+mkdir -p modules
+make -C modules -f /home/ruthra/litex/litex/litex/build/sim/core/modules/Makefile
+make[1]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules'
+mkdir -p xgmii_ethernet
+make MOD=xgmii_ethernet -C xgmii_ethernet -f /home/ruthra/litex/litex/litex/build/sim/core/modules/xgmii_ethernet/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/xgmii_ethernet'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/xgmii_ethernet'
+cp xgmii_ethernet/xgmii_ethernet.so xgmii_ethernet.so
+mkdir -p ethernet
+make MOD=ethernet -C ethernet -f /home/ruthra/litex/litex/litex/build/sim/core/modules/ethernet/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/ethernet'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/ethernet'
+cp ethernet/ethernet.so ethernet.so
+mkdir -p serial2console
+make MOD=serial2console -C serial2console -f /home/ruthra/litex/litex/litex/build/sim/core/modules/serial2console/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/serial2console'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/serial2console'
+cp serial2console/serial2console.so serial2console.so
+mkdir -p serial2tcp
+make MOD=serial2tcp -C serial2tcp -f /home/ruthra/litex/litex/litex/build/sim/core/modules/serial2tcp/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/serial2tcp'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/serial2tcp'
+cp serial2tcp/serial2tcp.so serial2tcp.so
+mkdir -p clocker
+make MOD=clocker -C clocker -f /home/ruthra/litex/litex/litex/build/sim/core/modules/clocker/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/clocker'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/clocker'
+cp clocker/clocker.so clocker.so
+mkdir -p sim_perf
+make MOD=sim_perf -C sim_perf -f /home/ruthra/litex/litex/litex/build/sim/core/modules/sim_perf/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/sim_perf'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/sim_perf'
+cp sim_perf/sim_perf.so sim_perf.so
+mkdir -p spdeeprom
+make MOD=spdeeprom -C spdeeprom -f /home/ruthra/litex/litex/litex/build/sim/core/modules/spdeeprom/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/spdeeprom'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/spdeeprom'
+cp spdeeprom/spdeeprom.so spdeeprom.so
+mkdir -p gmii_ethernet
+make MOD=gmii_ethernet -C gmii_ethernet -f /home/ruthra/litex/litex/litex/build/sim/core/modules/gmii_ethernet/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/gmii_ethernet'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/gmii_ethernet'
+cp gmii_ethernet/gmii_ethernet.so gmii_ethernet.so
+mkdir -p jtagremote
+make MOD=jtagremote -C jtagremote -f /home/ruthra/litex/litex/litex/build/sim/core/modules/jtagremote/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/jtagremote'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/jtagremote'
+cp jtagremote/jtagremote.so jtagremote.so
+mkdir -p swdremote
+make MOD=swdremote -C swdremote -f /home/ruthra/litex/litex/litex/build/sim/core/modules/swdremote/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/swdremote'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/swdremote'
+cp swdremote/swdremote.so swdremote.so
+mkdir -p qemu_axi
+make MOD=qemu_axi -C qemu_axi -f /home/ruthra/litex/litex/litex/build/sim/core/modules/qemu_axi/Makefile
+make[2]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/qemu_axi'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules/qemu_axi'
+cp qemu_axi/qemu_axi.so qemu_axi.so
+make[1]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/modules'
+mkdir -p /home/ruthra/litex-gemm/build/sim/gateware/obj_dir
+cc -c -ggdb -Wall -O3    -o /home/ruthra/litex-gemm/build/sim/gateware/obj_dir/libdylib.o /home/ruthra/litex/litex/litex/build/sim/core/libdylib.c
+cc -c -ggdb -Wall -O3    -o /home/ruthra/litex-gemm/build/sim/gateware/obj_dir/modules.o /home/ruthra/litex/litex/litex/build/sim/core/modules.c
+In file included from /usr/include/string.h:548,
+                 from /home/ruthra/litex/litex/litex/build/sim/core/modules.c:5:
+In function ‘strcat’,
+    inlined from ‘tinydir_readfile’ at /home/ruthra/litex/litex/litex/build/sim/core/tinydir.h:532:2,
+    inlined from ‘litex_sim_load_ext_modules’ at /home/ruthra/litex/litex/litex/build/sim/core/modules.c:68:14:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:130:10: warning: ‘__builtin___strcat_chk’ accessing 4097 or more bytes at offsets 0 and 4096 may overlap 1 byte at offset 4096 [-Wrestrict]
+  130 |   return __builtin___strcat_chk (__dest, __src, __glibc_objsize (__dest));
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc -c -ggdb -Wall -O3    -o /home/ruthra/litex-gemm/build/sim/gateware/obj_dir/pads.o /home/ruthra/litex/litex/litex/build/sim/core/pads.c
+cc -c -ggdb -Wall -O3    -o /home/ruthra/litex-gemm/build/sim/gateware/obj_dir/parse.o /home/ruthra/litex/litex/litex/build/sim/core/parse.c
+cc -c -ggdb -Wall -O3    -o /home/ruthra/litex-gemm/build/sim/gateware/obj_dir/sim.o /home/ruthra/litex/litex/litex/build/sim/core/sim.c
+verilator -Wno-fatal -O3 --cc /home/ruthra/litex-gemm/rtl/gemm_core.v --cc /home/ruthra/litex-gemm/rtl/gemm_dma.v --cc /home/ruthra/litex-gemm/rtl/gemm_wb.v --cc /home/ruthra/litex/pythondata-cpu-vexriscv/pythondata_cpu_vexriscv/verilog/VexRiscv.v --cc /home/ruthra/litex-gemm/build/sim/gateware/sim.v  --top-module sim --exe \
+	-DPRINTF_COND=0 \
+	sim_init.cpp /home/ruthra/litex/litex/litex/build/sim/core/veril.cpp  libdylib.o modules.o pads.o parse.o sim.o \
+	--top-module sim \
+	 \
+	-CFLAGS "-ggdb -Wall -O3    -I/home/ruthra/litex/litex/litex/build/sim/core " \
+	-LDFLAGS "-lpthread -Wl,--no-as-needed -ljson-c -lz -lm -lstdc++ -Wl,--no-as-needed -ldl -levent " \
+	 \
+	 \
+	 \
+	 \
+	--unroll-count 256 \
+	--output-split 5000 \
+	--output-split-cfuncs 500 \
+	--output-split-ctrace 500 \
+	 \
+	-Wno-BLKANDNBLK \
+	-Wno-WIDTH \
+	-Wno-COMBDLY \
+	-Wno-CASEINCOMPLETE \
+	-Wno-TIMESCALEMOD \
+	 \
+	--relative-includes 
+make -j -C /home/ruthra/litex-gemm/build/sim/gateware/obj_dir -f Vsim.mk Vsim
+make[1]: Entering directory '/home/ruthra/litex-gemm/build/sim/gateware/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -ggdb -Wall -O3    -I/home/ruthra/litex/litex/litex/build/sim/core   -Os -c -o veril.o /home/ruthra/litex/litex/litex/build/sim/core/veril.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -ggdb -Wall -O3    -I/home/ruthra/litex/litex/litex/build/sim/core   -Os -c -o sim_init.o ../sim_init.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -ggdb -Wall -O3    -I/home/ruthra/litex/litex/litex/build/sim/core   -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -ggdb -Wall -O3    -I/home/ruthra/litex/litex/litex/build/sim/core   -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -ggdb -Wall -O3    -I/home/ruthra/litex/litex/litex/build/sim/core   -c -o verilated_threads.o /usr/share/verilator/include/verilated_threads.cpp
+/usr/bin/python3 /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vsim.cpp Vsim___024root__DepSet_h104c642d__0.cpp Vsim___024root__DepSet_hb1836b75__0.cpp Vsim_sim__DepSet_h837b84dc__0.cpp Vsim_sim__DepSet_h40728c06__0.cpp Vsim_VexRiscv__DepSet_hda50bfa8__0.cpp Vsim_VexRiscv__DepSet_h9f7c89a9__0.cpp Vsim__Dpi.cpp Vsim__ConstPool_0.cpp Vsim___024root__Slow.cpp Vsim___024root__DepSet_h104c642d__0__Slow.cpp Vsim___024root__DepSet_hb1836b75__0__Slow.cpp Vsim_sim__Slow.cpp Vsim_sim__DepSet_h837b84dc__0__Slow.cpp Vsim_sim__DepSet_h40728c06__0__Slow.cpp Vsim_VexRiscv__Slow.cpp Vsim_VexRiscv__DepSet_hda50bfa8__0__Slow.cpp Vsim_VexRiscv__DepSet_h9f7c89a9__0__Slow.cpp Vsim__Syms.cpp > Vsim__ALL.cpp
+echo "" > Vsim__ALL.verilator_deplist.tmp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -ggdb -Wall -O3    -I/home/ruthra/litex/litex/litex/build/sim/core   -c -o Vsim__ALL.o Vsim__ALL.cpp
+Archive ar -rcs Vsim__ALL.a Vsim__ALL.o
+g++     veril.o sim_init.o verilated.o verilated_dpi.o verilated_threads.o Vsim__ALL.a   libdylib.o modules.o pads.o parse.o sim.o -lpthread -Wl,--no-as-needed -ljson-c -lz -lm -lstdc++ -Wl,--no-as-needed -ldl -levent  -pthread -lpthread -latomic   -o Vsim
+rm Vsim__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware/obj_dir'
+make: Leaving directory '/home/ruthra/litex-gemm/build/sim/gateware'
+
+[serial2console] loaded (0x5f56cc5bb2f0)
+[gmii_ethernet] loaded (0x5f56cc5bb2f0)
+[jtagremote] loaded (0x5f56cc5bb2f0)
+[serial2tcp] loaded (0x5f56cc5bb2f0)
+[ethernet] loaded (0x5f56cc5bb2f0)
+[xgmii_ethernet] loaded (0x5f56cc5bb2f0)
+[swdremote] loaded (0x5f56cc5bb2f0)
+[clocker] loaded
+[spdeeprom] loaded (addr = 0x0)
+[qemu_axi] loaded (0x5f56cc5bb2f0)
+MDEBUG: Save time: -1, load_time: 0
+[clocker] sys_clk: freq_hz=1000000, phase_deg=0
+
+[1m        __   _ __      _  __[0m
+[1m       / /  (_) /____ | |/_/[0m
+[1m      / /__/ / __/ -_)>  <[0m
+[1m     /____/_/\__/\__/_/|_|[0m
+[1m   Build your hardware, easily![0m
+
+ (c) Copyright 2012-2026 Enjoy-Digital
+ (c) Copyright 2007-2015 M-Labs
+
+ BIOS built on Nov  8 2026 12:20:43
+ BIOS CRC passed (75c31733)
+
+ LiteX git sha1: 7c3f25762
+
+--================ [1mSoC[0m =================--
+[1mCPU[0m:		VexRiscv @ 1MHz
+[1mBUS[0m:		wishbone 32-bit data/32-bit addr
+[1mCSR[0m:		32-bit data big ordering
+[1mROM[0m:		128.0KiB
+[1mSRAM[0m:		8.0KiB
+[1mMAIN RAM[0m:	256.0KiB
+
+--=========== [1mInitialization[0m ===========--
+--================ [1mBoot[0m ================--
+Booting from serial...
+Press Q or ESC to abort boot completely.
+sL5DdSMmkekro
+Timeout
+Executing booted program at 0x40000000
+
+--============== [1mLiftoff![0m ==============--
+
+=== litex-gemm Day 6: DMA driver and benchmarks (v2) ===
+ID ok, LANES=4, tile=4, version=0x0006, base=0x90000000, irq line=2
+buffers: A=0x40004000 B=0x40005400 Cs=0x40007800 Ch=0x4000bc00
+timer read overhead: 22 cycles (subtracted from results)
+dcache flush cost: 137 cycles (minimum of 5)
+DMA known-answer tests: PASS
+DMA random 4x4 tiles (100, poll and interrupt wait alternating): PASS
+DMA error path (misaligned descriptor): PASS
+IRQ line (ISR event counting): PASS
+coherency probe: stale words without flush = 16, after flush = 0
+DMA counters (K=1): cycles=74 xfers=24 stall=26 avg_stall=1.08
+CSV,dmactr,4,1,74,24,26
+DMA counters (K=4): cycles=188 xfers=48 stall=53 avg_stall=1.10
+CSV,dmactr,4,4,188,48,53
+DMA counters (K=8): cycles=340 xfers=80 stall=89 avg_stall=1.11
+CSV,dmactr,4,8,340,80,89
+N=4 reps=20  sw=1120 blk=412 pio=482 dma=712 dma_irq=914
+  vs naive: blk=2.71x pio=2.32x dma=1.57x dma_irq=1.22x
+  vs blocked: pio=0.85x dma=0.57x dma_irq=0.45x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,4,1120,412,482,712,914,1
+N=8 reps=10  sw=7596 blk=2248 pio=1751 dma=1255 dma_irq=1896
+  vs naive: blk=3.37x pio=4.33x dma=6.05x dma_irq=4.00x
+  vs blocked: pio=1.28x dma=1.79x dma_irq=1.18x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,8,7596,2248,1751,1255,1896,1
+N=16 reps=3  sw=56746 blk=16069 pio=9490 dma=4446 dma_irq=6755
+  vs naive: blk=3.53x pio=5.97x dma=12.76x dma_irq=8.40x
+  vs blocked: pio=1.69x dma=3.61x dma_irq=2.37x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,16,56746,16069,9490,4446,6755,1
+N=32 reps=1  sw=440205 blk=123172 pio=63566 dma=25574 dma_irq=34637
+  vs naive: blk=3.57x pio=6.92x dma=17.21x dma_irq=12.70x
+  vs blocked: pio=1.93x dma=4.81x dma_irq=3.55x
+  match: blk=yes pio=yes dma=yes dma_irq=yes
+CSV,day6,4,32,440205,123172,63566,25574,34637,1
+

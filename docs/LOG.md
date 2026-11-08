@@ -43,3 +43,29 @@
 - CPU-side slowdown root cause (consistent with): buffers a multiple of the cache size apart; fixed by a skewed pool layout.
 - Findings: DMA useless at 4x4, crossover between N=4 and 8; interrupt completion costs about 140 cycles per descriptor; flush 137 cycles; engine utilization about 39 percent at N=64.
 - Open: v0.6 unit-test summary; LANES 8/16 firmware runs; overlap of fetch and compute; Day 7 driver.
+# Day 7 Completion Summary
+
+## Completed
+- Zephyr application successfully built for LiteX VexRiscV.
+- Zephyr firmware successfully booted in LiteX simulation.
+- GEMM accelerator initialization and known-answer tests passed.
+- 100 randomized GEMM tile tests passed.
+- DMA polling and interrupt-mode tests passed.
+- DMA error handling and recovery passed.
+- Interrupt event-count validation passed.
+- Cache-coherency probe passed.
+- DMA performance counters collected.
+- Matrix multiplication benchmarks completed for N=4, 8, 16, 32 and 64.
+- Software and accelerator output comparisons passed.
+- Final simulation reported RESULT: PASS.
+
+## Performance observations
+- DMA achieved 14.61x speedup over naive software at N=64.
+- DMA achieved 4.13x speedup over blocked software at N=64.
+- DMA setup overhead affected smaller workloads.
+- Interrupt-mode execution was slower than polling in the measured run.
+
+## Final status
+Day 7 functional integration and validation successfully completed.
+Performance optimization and comparative analysis remain open.
+EOF

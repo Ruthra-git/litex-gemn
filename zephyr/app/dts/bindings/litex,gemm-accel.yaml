@@ -1,0 +1,8 @@
+description: LiteX int8 GEMM accelerator (Wishbone slave window, DMA master, level interrupt)
+compatible: "litex,gemm-accel"
+include: [base.yaml]
+properties:
+  reg:
+    required: true
+  interrupts:
+    required: true
