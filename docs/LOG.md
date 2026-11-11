@@ -64,8 +64,26 @@
 - DMA achieved 4.13x speedup over blocked software at N=64.
 - DMA setup overhead affected smaller workloads.
 - Interrupt-mode execution was slower than polling in the measured run.
+cat >> docs/LOG.md <<'EOF'
 
+- Day 7 long-descriptor experiment: K=4000 polling achieved 0%
+  CPU availability, while interrupt-driven execution achieved
+  90% CPU availability with 19,396 background iterations.
+- Short N=64 descriptors achieved 0% CPU availability in both modes.
+  This demonstrates that longer interrupt-driven descriptors allow
+  useful CPU/accelerator concurrency under Zephyr.
+- Latest benchmark: DMA achieved 14.78x speedup over naive software
+  and 4.18x over blocked software at N=64.
+- All functional tests and benchmark correctness checks passed.
+EOF
 ## Final status
 Day 7 functional integration and validation successfully completed.
 Performance optimization and comparative analysis remain open.
 EOF
+- Day 7 open findings: Zephyr interrupt mode costs about 4,100-5,500 cycles per 4x4-tile descriptor (Day 6 bare metal: about 140-200); the background thread got 0 CPU in both modes at N=64; Zephyr poll-mode DMA is 1.44-2.30x slower than bare metal; DMA counters +15 cycles per descriptor. Long-descriptor offload test (K=4000) added to separate scheduling problems from per-descriptor overhead.
+
+## Day 7 (complete)
+- Zephyr driver for the accelerator runs on the simulated SoC: all self-tests pass, all benchmark methods match at N=4..64; RESULT: PASS (docs/day7_run_L4_long.log, docs/day7_raw.csv; run 1 in docs/day7_raw_run1.csv).
+- Devicetree issue: the gemm node needed interrupt-parent = <&intc0>; soc.conf did not contain Kconfig flags so the build script no longer passes it through xargs.
+- Offload: per-tile interrupts return 0 percent CPU; one long descriptor (K=4000) returns 90 percent. Zephyr DMA poll is 1.42x-2.17x slower than bare metal; interrupt cost per descriptor about 3600-5100 cycles in the tile loop (bare metal about 136-202).
+- Open (not required for Day 7): hardware descriptor chaining (one interrupt per matrix), per-descriptor driver overhead trim (semaphore reset only in interrupt mode), LANES 8/16 on the SoC.

@@ -1,0 +1,4 @@
+- Zephyr: v4.4.0-17058-ga1dfedb8e5f (development snapshot, version string 4.4.99)
+- west: West version: v1.5.0
+- Zephyr SDK: /home/ruthra/zephyr-sdk-1.0.1
+- Zephyr venv Python: Python 3.12.3

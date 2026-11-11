@@ -431,6 +431,64 @@ static int bench(int n, int reps, uint32_t ovh, uint32_t lanes)
 	return ok;
 }
 
+/* Long descriptor: test whether Zephyr schedules background work
+ * while the GEMM accelerator is busy.
+ */
+static void offload_long(uint32_t lanes)
+{
+    uint32_t c0 = bg_count;
+    uint32_t t0 = now();
+
+    k_msleep(200);
+    uint32_t cal_count = bg_count - c0;
+    uint32_t cal_cycles = now() - t0;
+
+    if (cal_count == 0) {
+        printk("offload_long: background thread did not run during calibration\n");
+        return;
+    }
+
+    fill(mA, 4096);
+    fill(mB, 16);
+    gemm_dcache_flush();
+
+    for (int mode = 0; mode < 2; mode++) {
+        uint32_t st = 0;
+        uint32_t b0 = bg_count;
+
+        t0 = now();
+
+        int rc = gemm_run_descriptor(
+            gemm,
+            (uint32_t)(uintptr_t)mA, 0,
+            (uint32_t)(uintptr_t)mB, 0,
+            (uint32_t)(uintptr_t)mCh, 16,
+            4000, mode == 1, &st
+        );
+
+        uint32_t cycles = now() - t0;
+        uint32_t bgd = bg_count - b0;
+
+        uint32_t pct = (uint32_t)(
+            ((uint64_t)bgd * cal_cycles * 100ULL) /
+            ((uint64_t)cal_count * (uint64_t)(cycles ? cycles : 1))
+        );
+
+        printk("offload_long K=4000 mode=%s: dma_cycles=%u bg_iterations=%u cpu_available=%u%%%s\n",
+               mode ? "irq " : "poll",
+               (unsigned int)cycles,
+               (unsigned int)bgd,
+               (unsigned int)pct,
+               rc ? "  (error)" : "");
+
+        printk("ZCSV,offload_long,%u,4000,%s,%u,%u,%u\n",
+               (unsigned int)lanes,
+               mode ? "irq" : "poll",
+               (unsigned int)cycles,
+               (unsigned int)bgd,
+               (unsigned int)pct);
+    }
+}
 int main(void)
 {
 	int pass = 1;
@@ -474,7 +532,7 @@ int main(void)
 	report_counters(32, info.lanes);
 
 	offload_demo(64, info.lanes);
-
+        offload_long(info.lanes);
 	static const int sizes[] = {4, 8, 16, 32, 64};
 	static const int reps[] = {20, 10, 3, 1, 1};
 
