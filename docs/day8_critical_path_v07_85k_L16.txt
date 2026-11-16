@@ -1,0 +1,46 @@
+Info: Critical path report for clock 'clk' (posedge -> posedge):
+Info: curr total
+Info:  0.5  0.5  Source u_core.opa_TRELLIS_FF_Q_9.Q
+Info:  4.1  4.6    Net u_core.opa[117] budget 0.378000 ns (54,32) -> (18,10)
+Info:                Sink u_core.newv_CCU2C_S0_63_B1_LUT4_Z_C_LUT4_Z_D_MULT18X18D_P0_P1_MULT18X18D_P0.A5
+Info:                Defined in:
+Info:                  rtl/gemm_wb.v:61.32-74.6
+Info:                  rtl/gemm_core.v:40.19-40.22
+Info:  3.9  8.6  Source u_core.newv_CCU2C_S0_63_B1_LUT4_Z_C_LUT4_Z_D_MULT18X18D_P0_P1_MULT18X18D_P0.P3
+Info:  2.0 10.5    Net u_core.newv_CCU2C_S0_63_B1_LUT4_Z_C_LUT4_Z_D_MULT18X18D_P0_P1_MULT18X18D_P0_P14[3] budget 0.378000 ns (18,10) -> (33,9)
+Info:                Sink u_core.newv_CCU2C_S0_63_B1_LUT4_Z_C_LUT4_Z_D_MULT18X18D_P0_P3_LUT4_Z.B
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:108.23-108.24
+Info:  0.2 10.8  Source u_core.newv_CCU2C_S0_63_B1_LUT4_Z_C_LUT4_Z_D_MULT18X18D_P0_P3_LUT4_Z.F
+Info:  0.6 11.4    Net u_core.newv_CCU2C_S0_63_B1_LUT4_Z_C_LUT4_Z_D_MULT18X18D_P0_P3[0] budget 0.378000 ns (33,9) -> (33,9)
+Info:                Sink u_core.newv_CCU2C_S0_63_B1_LUT4_Z_26_A_PFUMX_Z_ALUT_LUT4_Z.A
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:108.23-108.24
+Info:  0.2 11.7  Source u_core.newv_CCU2C_S0_63_B1_LUT4_Z_26_A_PFUMX_Z_ALUT_LUT4_Z.F
+Info:  0.0 11.7    Net u_core.newv_CCU2C_S0_63_B1_LUT4_Z_26_A_PFUMX_Z_ALUT budget 0.377000 ns (33,9) -> (33,9)
+Info:                Sink u_core.newv_CCU2C_S0_63_B1_LUT4_Z_26_A_PFUMX_Z_BLUT_LUT4_Z.F1
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:133.22-133.24
+Info:  0.2 11.8  Source u_core.newv_CCU2C_S0_63_B1_LUT4_Z_26_A_PFUMX_Z_BLUT_LUT4_Z.OFX
+Info:  0.7 12.5    Net u_core.newv_CCU2C_S0_63_B1_LUT4_Z_26_A[0] budget 0.377000 ns (33,9) -> (33,7)
+Info:                Sink u_core.newv_CCU2C_S0_63_B1_LUT4_Z_26.A
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:108.23-108.24
+Info:  0.2 12.8  Source u_core.newv_CCU2C_S0_63_B1_LUT4_Z_26.F
+Info:  1.5 14.2    Net u_core.newv_CCU2C_S0_63_B1[4] budget 0.377000 ns (33,7) -> (34,3)
+Info:                Sink u_core.newv_CCU2C_S0_50$CCU2_COMB1.B
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/techmap.v:200.21-200.22
+Info:  0.4 14.7  Source u_core.newv_CCU2C_S0_50$CCU2_COMB1.FCO
+Info:  0.0 14.7    Net u_core.newv_CCU2C_S0_51_COUT[5] budget 0.000000 ns (34,3) -> (35,3)
+Info:                Sink u_core.newv_CCU2C_S0_49$CCU2_COMB0.FCI
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/arith_map.v:63.22-63.23
+Info:  0.1 14.7  Source u_core.newv_CCU2C_S0_49$CCU2_COMB0.FCO
+Info:  0.0 14.7    Net u_core.newv_CCU2C_S0_49$CCU2_FCI_INT budget 0.000000 ns (35,3) -> (35,3)
+Info:                Sink u_core.newv_CCU2C_S0_49$CCU2_COMB1.FCI
+Info:  0.0 14.7  Source u_core.newv_CCU2C_S0_49$CCU2_COMB1.FCO
+Info:  0.0 14.7    Net u_core.newv_CCU2C_S0_51_COUT[7] budget 0.000000 ns (35,3) -> (35,3)
+Info:                Sink u_core.newv_CCU2C_S0_48$CCU2_COMB0.FCI
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/arith_map.v:63.22-63.23

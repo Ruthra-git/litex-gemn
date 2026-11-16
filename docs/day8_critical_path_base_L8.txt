@@ -1,0 +1,46 @@
+Info: Critical path report for clock 'clk' (posedge -> posedge):
+Info: curr total
+Info:  0.5  0.5  Source u_core.cyc_TRELLIS_FF_Q_6.Q
+Info:  2.0  2.5    Net u_core.acc_mode_LUT4_D_1_A_PFUMX_Z_1_BLUT_LUT4_Z_D[4] budget -0.159000 ns (29,12) -> (26,31)
+Info:                Sink u_core.acc_mode_LUT4_D_Z_MULT18X18D_P15_A0_PFUMX_Z_13_BLUT_LUT4_Z_D_LUT4_Z.D
+Info:                Defined in:
+Info:                  rtl/gemm_wb.v:61.32-74.6
+Info:                  rtl/gemm_core.v:35.17-35.20
+Info:  0.2  2.7  Source u_core.acc_mode_LUT4_D_Z_MULT18X18D_P15_A0_PFUMX_Z_13_BLUT_LUT4_Z_D_LUT4_Z.F
+Info:  0.9  3.7    Net u_core.acc_mode_LUT4_D_Z_MULT18X18D_P15_A0_PFUMX_Z_13_BLUT_LUT4_Z_D[2] budget -0.158000 ns (26,31) -> (25,30)
+Info:                Sink u_core.acc_mode_LUT4_D_Z_MULT18X18D_P15_A0_PFUMX_Z_13_BLUT_LUT4_Z.D
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:108.23-108.24
+Info:  0.4  4.1  Source u_core.acc_mode_LUT4_D_Z_MULT18X18D_P15_A0_PFUMX_Z_13_BLUT_LUT4_Z.OFX
+Info:  2.1  6.2    Net u_core.acc_mode_LUT4_D_Z_MULT18X18D_P15_A0[23] budget -0.139000 ns (25,30) -> (26,13)
+Info:                Sink u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_C_LUT4_Z_C_LUT4_Z_D_MULT18X18D_P0.A16
+Info:                Defined in:
+Info:                  rtl/gemm_wb.v:61.32-74.6
+Info:                  rtl/gemm_core.v:0.0-0.0
+Info:                  /usr/bin/../share/yosys/techmap.v:154.18-154.24
+Info:  3.9 10.1  Source u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_C_LUT4_Z_C_LUT4_Z_D_MULT18X18D_P0.P6
+Info:  2.8 12.9    Net u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_C_LUT4_Z_C_LUT4_Z_D[6] budget -0.139000 ns (26,13) -> (36,30)
+Info:                Sink u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_D_MULT18X18D_P0_P7_LUT4_Z_1.D
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:108.23-108.24
+Info:  0.2 13.2  Source u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_D_MULT18X18D_P0_P7_LUT4_Z_1.F
+Info:  1.1 14.3    Net u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_D_MULT18X18D_P0_P7[2] budget -0.116000 ns (36,30) -> (32,31)
+Info:                Sink u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_D_MULT18X18D_P0_P6_LUT4_Z.C
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:108.23-108.24
+Info:  0.2 14.5  Source u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_D_MULT18X18D_P0_P6_LUT4_Z.F
+Info:  0.8 15.4    Net u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_B0_LUT4_Z_D_MULT18X18D_P0_P6[0] budget -0.099000 ns (32,31) -> (32,31)
+Info:                Sink u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_A0_PFUMX_Z_24_ALUT_LUT4_Z.D
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:108.23-108.24
+Info:  0.2 15.6  Source u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_A0_PFUMX_Z_24_ALUT_LUT4_Z.F
+Info:  0.0 15.6    Net u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_A0_PFUMX_Z_24_ALUT budget -0.099000 ns (32,31) -> (32,31)
+Info:                Sink u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_A0_PFUMX_Z_24_BLUT_LUT4_Z.F1
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/ecp5/cells_map.v:133.22-133.24
+Info:  0.2 15.8  Source u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_A0_PFUMX_Z_24_BLUT_LUT4_Z.OFX
+Info:  1.7 17.4    Net u_core.c_flat_TRELLIS_FF_Q_354_DI_LUT4_Z_C_L6MUX21_Z_SD_LUT4_Z_D_PFUMX_Z_BLUT_LUT4_Z_B_PFUMX_Z_C0_CCU2C_S0_A0[6] budget -0.099000 ns (32,31) -> (36,28)
+Info:                Sink u_core.c_flat_TRELLIS_FF_Q_105_DI_PFUMX_Z_C0_LUT4_Z_1_B_LUT4_Z_B_LUT4_B_Z_CCU2C_S0_COUT_CCU2C_COUT_14_S0_CCU2C_S0_COUT_CCU2C_COUT_1$CCU2_COMB0.A
+Info:                Defined in:
+Info:                  /usr/bin/../share/yosys/techmap.v:200.24-200.25
+Info:  0.4 17.9  Source u_core.c_flat_TRELLIS_FF_Q_105_DI_PFUMX_Z_C0_LUT4_Z_1_B_LUT4_Z_B_LUT4_B_Z_CCU2C_S0_COUT_CCU2C_COUT_14_S0_CCU2C_S0_COUT_CCU2C_COUT_1$CCU2_COMB0.FCO

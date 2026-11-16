@@ -1,0 +1,10 @@
+lanes,seed,yosys_lut4,yosys_ff,yosys_carry,yosys_dsp,yosys_bram,yosys_latch,pnr_comb,pnr_ff,pnr_mult,pnr_bram,fmax_mhz,target_mhz,timing_met,device,status,comb_avail,note
+16,1,32561,1815,346,16,0,0,33355,1815,16,0,,100.0,,25k,no-fit,24288,Unable to find legal placement for cell 'u_core.c_flat_TRELLIS_FF_Q_509_DI_LUT4_Z_A_PFUMX_Z_C0_PFUMX_Z_ALUT_LUT4_Z_B_LUT
+16,2,32561,1815,346,16,0,0,33355,1815,16,0,,100.0,,25k,no-fit,24288,Unable to find legal placement for cell 'u_core.c_flat_TRELLIS_FF_Q_509_DI_LUT4_Z_A_PFUMX_Z_C0_PFUMX_Z_ALUT_LUT4_Z_B_LUT
+16,3,32561,1815,346,16,0,0,33355,1815,16,0,,100.0,,25k,no-fit,24288,Unable to find legal placement for cell 'u_core.c_flat_TRELLIS_FF_Q_509_DI_LUT4_Z_A_PFUMX_Z_C0_PFUMX_Z_ALUT_LUT4_Z_B_LUT
+4,1,15199,1815,247,4,0,0,15771,1815,4,0,38.52,100.0,no,25k,ok,24288,
+4,2,15199,1815,247,4,0,0,15771,1815,4,0,38.40,100.0,no,25k,ok,24288,
+4,3,15199,1815,247,4,0,0,15771,1815,4,0,36.02,100.0,no,25k,ok,24288,
+8,1,19098,1815,280,8,0,0,19744,1815,8,0,33.71,100.0,no,25k,ok,24288,
+8,2,19098,1815,280,8,0,0,19744,1815,8,0,34.84,100.0,no,25k,ok,24288,
+8,3,19098,1815,280,8,0,0,19744,1815,8,0,33.73,100.0,no,25k,ok,24288,

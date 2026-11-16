@@ -92,3 +92,7 @@ K=1 LANES=4 tile took 185 cycles (effective bus latency about 4.8 cycles per tra
 - API (zephyr/app/include/gemm_litex.h): gemm_matmul (n x n int8, one descriptor per 4x4 tile, poll or interrupt completion, flushes the data cache before and after), gemm_run_descriptor (low level), gemm_get_info, gemm_get_counters, gemm_isr_count, gemm_dcache_flush.
 - Interrupt contract: the ISR records DMA_STATUS, clears DONE (which drops the level line) and gives a semaphore; the interrupt is enabled only after DONE is clear.
 - Guidance: use interrupt completion only for descriptors much longer than an RTOS context switch (measured: 90 percent CPU available for a 155000-cycle descriptor, 0 percent for 660-cycle tiles).
+
+## Core v0.7 (Day 8)
+- gemm_core.v v0.7 has the same ports and cycle-exact behavior as v0.6 (cycles = 64/LANES + 1, C valid at DONE, accumulate and error rules). Each output group's operands are selected one cycle ahead into operand registers with small constant-width multiplexers; results are written through per-slot register enables.
+- Estimated on LFE5U-25F (nextpnr-ecp5, out-of-context, seeds 1-3): 10,220 / 10,442 / 10,767 logic cells and about 60.0 / 60.0 / 57.5 MHz for LANES 4 / 8 / 16; multiplier blocks equal LANES. v0.6 needed 15,771 / 19,744 / more than the device at 31-37 MHz.

@@ -1,0 +1,46 @@
+Info: Critical path report for clock 'clk' (posedge -> posedge):
+Info: curr total
+Info:  0.5  0.5  Source u_dma.ld_idx_TRELLIS_FF_Q.Q
+Info:  0.8  1.3    Net dma_ld_idx[1] budget 0.000000 ns (53,36) -> (53,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B0$CCU2_COMB0.B
+Info:                Defined in:
+Info:                  rtl/gemm_wb.v:76.39-114.6
+Info:                  rtl/gemm_dma.v:42.25-42.31
+Info:  0.4  1.8  Source u_dma.ld_idx_CCU2C_B0$CCU2_COMB0.FCO
+Info:  0.0  1.8    Net u_dma.ld_idx_CCU2C_B0$CCU2_FCI_INT budget 0.000000 ns (53,36) -> (53,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B0$CCU2_COMB1.FCI
+Info:  0.0  1.8  Source u_dma.ld_idx_CCU2C_B0$CCU2_COMB1.FCO
+Info:  0.0  1.8    Net u_dma.ld_idx_CCU2C_B1_COUT[8] budget 0.000000 ns (53,36) -> (53,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT$CCU2_COMB0.FCI
+Info:                Defined in:
+Info:                  rtl/gemm_wb.v:0.0-0.0
+Info:                  /usr/bin/../share/yosys/ecp5/arith_map.v:65.22-65.25
+Info:  0.1  1.9  Source u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT$CCU2_COMB0.FCO
+Info:  0.0  1.9    Net u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT$CCU2_FCI_INT budget 0.000000 ns (53,36) -> (53,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT$CCU2_COMB1.FCI
+Info:  0.0  1.9  Source u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT$CCU2_COMB1.FCO
+Info:  0.0  1.9    Net u_dma.ld_idx_CCU2C_B1_COUT[10] budget 0.000000 ns (53,36) -> (53,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_11$CCU2_COMB0.FCI
+Info:                Defined in:
+Info:                  rtl/gemm_wb.v:0.0-0.0
+Info:                  /usr/bin/../share/yosys/ecp5/arith_map.v:65.22-65.25
+Info:  0.1  1.9  Source u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_11$CCU2_COMB0.FCO
+Info:  0.0  1.9    Net u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_11$CCU2_FCI_INT budget 0.000000 ns (53,36) -> (53,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_11$CCU2_COMB1.FCI
+Info:  0.0  1.9  Source u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_11$CCU2_COMB1.FCO
+Info:  0.0  1.9    Net u_dma.ld_idx_CCU2C_B1_COUT[12] budget 0.000000 ns (53,36) -> (53,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_10$CCU2_COMB0.FCI
+Info:                Defined in:
+Info:                  rtl/gemm_wb.v:0.0-0.0
+Info:                  /usr/bin/../share/yosys/ecp5/arith_map.v:65.22-65.25
+Info:  0.1  2.0  Source u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_10$CCU2_COMB0.FCO
+Info:  0.0  2.0    Net u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_10$CCU2_FCI_INT budget 0.000000 ns (53,36) -> (53,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_10$CCU2_COMB1.FCI
+Info:  0.0  2.0  Source u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_10$CCU2_COMB1.FCO
+Info:  0.0  2.0    Net u_dma.ld_idx_CCU2C_B1_COUT[14] budget 0.000000 ns (53,36) -> (54,36)
+Info:                Sink u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_9$CCU2_COMB0.FCI
+Info:                Defined in:
+Info:                  rtl/gemm_wb.v:0.0-0.0
+Info:                  /usr/bin/../share/yosys/ecp5/arith_map.v:65.22-65.25
+Info:  0.1  2.1  Source u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_9$CCU2_COMB0.FCO
+Info:  0.0  2.1    Net u_dma.ld_idx_CCU2C_B1_COUT_CCU2C_COUT_9$CCU2_FCI_INT budget 0.000000 ns (54,36) -> (54,36)

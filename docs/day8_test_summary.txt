@@ -1,0 +1,19 @@
+=== DUT=core LANES=4 ===
+                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                194450.01           8.46      22973.26  **
+=== DUT=core LANES=8 ===
+                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                112770.01           5.56      20272.07  **
+=== DUT=core LANES=16 ===
+                                                        ** TESTS=9 PASS=9 FAIL=0 SKIP=0                                 71930.01           4.10      17550.65  **
+=== DUT=wb LANES=4 ===
+                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          79340.01           4.40      18048.18  **
+=== DUT=wb LANES=8 ===
+                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          70140.01           3.85      18232.53  **
+=== DUT=wb LANES=16 ===
+                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          65540.01           3.66      17903.79  **
+=== DUT=dma LANES=4 ===
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            328770.01          16.45      19985.19  **
+=== DUT=dma LANES=8 ===
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            277490.01          14.43      19233.83  **
+=== DUT=dma LANES=16 ===
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                            251850.01          13.32      18906.52  **
+ALL PASSED

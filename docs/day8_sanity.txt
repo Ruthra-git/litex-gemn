@@ -1,0 +1,10 @@
+| LANES | COMB | FF | MULT | BRAM | Fmax median MHz | Fmax spread |
+|---|---|---|---|---|---|---|
+| 4 | 15771.0 | 1815.0 | 4.0 | 0.0 | 38.4 | 6.5% |
+| 8 | 19744.0 | 1815.0 | 8.0 | 0.0 | 33.73 | 3.4% |
+| 16 | 33355.0 | 1815.0 | 16.0 | 0.0 | None | n/a |
+
+FAIL: LANES=16: missing clock estimate in some runs
+WARN: LANES=4: estimated clock 38.4 MHz is below 50 MHz
+WARN: LANES=8: estimated clock 33.73 MHz is below 50 MHz
+SANITY: FAILED
