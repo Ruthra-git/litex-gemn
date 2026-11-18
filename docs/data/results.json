@@ -1,0 +1,31 @@
+{
+  "note": "Single source for README tables and figures. Cycle counts are from the cycle-accurate simulated SoC. Area and clock are Yosys + nextpnr-ecp5 estimates (out of context, speed grade 6), not silicon measurements.",
+  "bare_metal_n64": {
+    "dma_poll": {"4": 177278, "8": 144510, "16": 128126},
+    "blocked": 1023084,
+    "naive": 3629589,
+    "pio_fast_L4": 521745,
+    "dma_irq_L4": 212197
+  },
+  "zephyr_L4": {
+    "naive":    {"4": 1123, "8": 7881,  "16": 57673, "32": 450553, "64": 3730532},
+    "blocked":  {"4": 414,  "8": 2269,  "16": 16971, "32": 126034, "64": 1054490},
+    "dma_poll": {"4": 1439, "8": 2729,  "16": 9459,  "32": 46411,  "64": 252262},
+    "dma_irq":  {"4": 6502, "8": 19855, "16": 73791, "32": 288660, "64": 1165869}
+  },
+  "fpga_v07_25f": {
+    "4":  {"logic": 10220, "ff": 1879, "mult": 4,  "clock_mhz": 59.99},
+    "8":  {"logic": 10442, "ff": 1911, "mult": 8,  "clock_mhz": 59.96},
+    "16": {"logic": 10767, "ff": 1975, "mult": 16, "clock_mhz": 57.49}
+  },
+  "fpga_v06_85f": {
+    "4":  {"logic": 15771, "clock_mhz": 37.1},
+    "8":  {"logic": 19744, "clock_mhz": 35.2},
+    "16": {"logic": 33355, "clock_mhz": 30.8}
+  },
+  "fpga_v07_85f": {
+    "4":  {"logic": 10220, "clock_mhz": 59.2},
+    "8":  {"logic": 10442, "clock_mhz": 60.7},
+    "16": {"logic": 10767, "clock_mhz": 55.9}
+  }
+}

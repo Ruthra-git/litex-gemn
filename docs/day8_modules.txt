@@ -1,0 +1,1 @@
+Own-logic LUT4 per module at LANES=4 (hierarchical Yosys statistics): gemm_core 6988, gemm_dma 2400, gemm_wb 7536

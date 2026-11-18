@@ -14,7 +14,7 @@ formal:
 budget:
 > python3 scripts/synth_budget.py
 
-test:
+test: vectors
 > LANES_LIST="$(LANES_LIST)" ./scripts/run_unit_tests.sh
 
 mutate:
@@ -42,7 +42,7 @@ formal:
 budget:
 > python3 scripts/synth_budget.py
 
-test:
+test: vectors
 > LANES_LIST="$(LANES_LIST)" ./scripts/run_unit_tests.sh
 
 mutate:
@@ -53,3 +53,6 @@ soc-check:
 
 summary:
 > ./scripts/day9_collect.sh
+
+vectors:
+> python3 model/gemm_golden.py

@@ -42,7 +42,7 @@ jobs:
           wget -q https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
           python3 litex_setup.py --init --install --config=standard
           pip install meson ninja pexpect numpy
-          # TODO: pin the LiteX commit used for the reported results: git -C $HOME/litex/litex checkout <sha>
+          git -C $HOME/litex/litex checkout 7c3f25762781c6bb840cacd15fe47dd91d568b2f
       - name: Build, run and check LANES 4, 8, 16
         run: |
           . $HOME/litex/venv/bin/activate
