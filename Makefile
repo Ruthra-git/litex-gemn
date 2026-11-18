@@ -25,7 +25,6 @@ soc-check:
 
 summary:
 > ./scripts/day9_collect.sh
-EOFcat > Makefile <<'EOF'
 .RECIPEPREFIX = >
 LANES_LIST ?= 4 8 16
 .PHONY: all static formal budget test mutate soc-check summary
