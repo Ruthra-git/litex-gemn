@@ -96,3 +96,33 @@ K=1 LANES=4 tile took 185 cycles (effective bus latency about 4.8 cycles per tra
 ## Core v0.7 (Day 8)
 - gemm_core.v v0.7 has the same ports and cycle-exact behavior as v0.6 (cycles = 64/LANES + 1, C valid at DONE, accumulate and error rules). Each output group's operands are selected one cycle ahead into operand registers with small constant-width multiplexers; results are written through per-slot register enables.
 - Estimated on LFE5U-25F (nextpnr-ecp5, out-of-context, seeds 1-3): 10,220 / 10,442 / 10,767 logic cells and about 60.0 / 60.0 / 57.5 MHz for LANES 4 / 8 / 16; multiplier blocks equal LANES. v0.6 needed 15,771 / 19,744 / more than the device at 31-37 MHz.
+
+## Verification
+
+The DMA control logic is checked using the following formal properties:
+
+- F1: Legal state encoding.
+- F2: Busy signal mirrors the FSM.
+- F3: Busy excludes done and error.
+- F4: Done and error are never asserted simultaneously.
+- F5: Error flag matches the error code.
+- F6: Bus cycles occur only in WAIT states; writes occur only while writing C.
+- F7: Invalid descriptors are rejected without bus traffic; valid descriptors start fetching.
+- F8: Core start and clear pulses originate only from their permitted states.
+- F9: Buffer loads occur only on acknowledged reads.
+- F10: Bounded termination.
+- F11: Exact transfer count of 8K+16 at completion.
+
+Formal verification scope and assumptions are documented in
+docs/VERIFICATION.md. These properties do not constitute an
+unbounded proof for arbitrary timeout or K values.
+
+### Resource budgets
+
+| LANES | LUT4 budget | FF budget | MULT18X18D budget |
+|---:|---:|---:|---:|
+| 4 | 10700 | 2000 | 4 |
+| 8 | 10900 | 2050 | 8 |
+| 16 | 11200 | 2100 | 16 |
+
+All three configurations passed the recorded Day 9 resource checks.

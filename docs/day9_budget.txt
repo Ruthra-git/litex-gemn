@@ -1,0 +1,6 @@
+| LANES | LUT4 | budget | Day 8 baseline | FF | budget | MULT18X18D | budget | status |
+|---|---|---|---|---|---|---|---|---|
+| 4 | 4304 | 10700 | 9686 | 1879 | 2000 | 4 | 4 | ok (differs from Day 8 baseline) |
+| 8 | 5170 | 10900 | 9872 | 1911 | 2050 | 8 | 8 | ok (differs from Day 8 baseline) |
+| 16 | 5390 | 11200 | 10125 | 1975 | 2100 | 16 | 16 | ok (differs from Day 8 baseline) |
+BUDGET OK

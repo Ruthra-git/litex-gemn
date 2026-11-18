@@ -1,0 +1,52 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  static:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: YosysHQ/setup-oss-cad-suite@v3
+      - name: Lint (warnings allowed, errors fail)
+        run: verilator --lint-only -Wall -Wno-fatal rtl/gemm_core.v rtl/gemm_dma.v rtl/gemm_wb.v --top-module gemm_wb
+      - name: Structural check
+        run: ./scripts/yosys_check.sh
+      - name: Resource budget
+        run: python3 scripts/synth_budget.py
+
+  formal:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: YosysHQ/setup-oss-cad-suite@v3
+      - name: SymbiYosys (prove, bmc, cover)
+        run: cd formal && sby -f gemm_dma.sby
+      - name: Upload formal logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: formal-logs
+          path: formal/gemm_dma_*/logfile.txt
+
+  unit:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        lanes: ["4", "8", "16"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: YosysHQ/setup-oss-cad-suite@v3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Python dependencies
+        run: pip install cocotb==1.9.2 numpy pytest
+      - name: Golden vectors
+        run: python3 model/gemm_golden.py
+      - name: Unit tests (core, wb, dma)
+        run: LANES_LIST=${{ matrix.lanes }} ./scripts/run_unit_tests.sh

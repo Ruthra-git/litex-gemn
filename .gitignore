@@ -8,3 +8,5 @@ results.xml
 sim_build*/
 results.xml
 *.fst
+formal/gemm_dma_*/
+build/

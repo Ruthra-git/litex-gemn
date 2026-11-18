@@ -244,5 +244,8 @@ module gemm_dma #(
             endcase
         end
     end
+`ifdef FORMAL
+`include "gemm_dma_props.vh"
+`endif
 endmodule
 `default_nettype wire

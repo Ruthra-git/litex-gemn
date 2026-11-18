@@ -1,0 +1,53 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/ruthra/litex-gemm/tb'
+/home/ruthra/tools/oss-cad-suite/lib/python3.11/site-packages/cocotb-2.1.0.dev0+41564633-py3.11-linux-x64.egg/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+rm -f results.xml
+COCOTB_TEST_MODULES=test_gemm_wb COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=gemm_wb TOPLEVEL_LANG=verilog \
+         /home/ruthra/tools/oss-cad-suite/bin/vvp -M /home/ruthra/tools/oss-cad-suite/lib/python3.11/site-packages/cocotb-2.1.0.dev0+41564633-py3.11-linux-x64.egg/cocotb/libs -m libcocotbvpi_icarus   sim_build_wb_L8/sim.vvp   
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:216  in gpi_load_users                  Running entry func 'initialize' from loaded library '/home/ruthra/tools/oss-cad-suite/lib/python3.11/site-packages/cocotb-2.1.0.dev0+41564633-py3.11-linux-x64.egg/cocotb/libs/libcocotb.so'
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:96   in initialize                      Using Python 3.11.6 interpreter at /home/ruthra/tools/oss-cad-suite/bin/tabbypy3
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 14.0 (devel)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1794986130
+     0.00ns INFO     cocotb                             Initialized cocotb v2.1.0.dev0+41564633 from /home/ruthra/tools/oss-cad-suite/lib/python3.11/site-packages/cocotb-2.1.0.dev0+41564633-py3.11-linux-x64.egg/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_gemm_wb.test_id_and_info (1/10)
+    70.00ns INFO     cocotb.regression                  test_gemm_wb.test_id_and_info passed
+    70.00ns INFO     cocotb.regression                  running test_gemm_wb.test_buffer_readback_and_byte_enables (2/10)
+   250.00ns INFO     cocotb.regression                  test_gemm_wb.test_buffer_readback_and_byte_enables passed
+   250.00ns INFO     cocotb.regression                  running test_gemm_wb.test_c_readonly_and_unmapped (3/10)
+   550.00ns INFO     cocotb.regression                  test_gemm_wb.test_c_readonly_and_unmapped passed
+   550.00ns INFO     cocotb.regression                  running test_gemm_wb.test_tile_via_bus_matches_golden (4/10)
+ 62990.00ns INFO     cocotb.regression                  test_gemm_wb.test_tile_via_bus_matches_golden passed
+ 62990.00ns INFO     cocotb.regression                  running test_gemm_wb.test_cycles_register (5/10)
+ 63650.00ns INFO     cocotb.regression                  test_gemm_wb.test_cycles_register passed
+ 63650.00ns INFO     cocotb.regression                  running test_gemm_wb.test_accumulate_via_bus (6/10)
+ 66690.01ns INFO     cocotb.regression                  test_gemm_wb.test_accumulate_via_bus passed
+ 66690.01ns INFO     cocotb.regression                  running test_gemm_wb.test_irq (7/10)
+ 68000.01ns INFO     cocotb.regression                  test_gemm_wb.test_irq passed
+ 68000.01ns INFO     cocotb.regression                  running test_gemm_wb.test_start_while_busy (8/10)
+ 68640.01ns INFO     cocotb.regression                  test_gemm_wb.test_start_while_busy passed
+ 68640.01ns INFO     cocotb.regression                  running test_gemm_wb.test_buffer_writes_during_busy_do_not_corrupt (9/10)
+ 69280.01ns INFO     cocotb.regression                  test_gemm_wb.test_buffer_writes_during_busy_do_not_corrupt passed
+ 69280.01ns INFO     cocotb.regression                  running test_gemm_wb.test_soft_reset_mid_run (10/10)
+ 70140.01ns INFO     cocotb.regression                  test_gemm_wb.test_soft_reset_mid_run passed
+ 70140.01ns INFO     cocotb.regression                  ********************************************************************************************************************
+                                                        ** TEST                                                        STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ********************************************************************************************************************
+                                                        ** test_gemm_wb.test_id_and_info                                PASS          70.00           0.00      18893.26  **
+                                                        ** test_gemm_wb.test_buffer_readback_and_byte_enables           PASS         180.00           0.00      44347.67  **
+                                                        ** test_gemm_wb.test_c_readonly_and_unmapped                    PASS         300.00           0.01      45819.36  **
+                                                        ** test_gemm_wb.test_tile_via_bus_matches_golden                PASS       62440.00           1.36      45834.18  **
+                                                        ** test_gemm_wb.test_cycles_register                            PASS         660.00           0.02      42351.80  **
+                                                        ** test_gemm_wb.test_accumulate_via_bus                         PASS        3040.00           0.07      44643.06  **
+                                                        ** test_gemm_wb.test_irq                                        PASS        1310.00           0.03      48839.04  **
+                                                        ** test_gemm_wb.test_start_while_busy                           PASS         640.00           0.01      42669.08  **
+                                                        ** test_gemm_wb.test_buffer_writes_during_busy_do_not_corrupt   PASS         640.00           0.02      42172.35  **
+                                                        ** test_gemm_wb.test_soft_reset_mid_run                         PASS         860.00           0.02      46846.69  **
+                                                        ********************************************************************************************************************
+                                                        ** TESTS=10 PASS=10 FAIL=0 SKIP=0                                          70140.01           1.56      44962.89  **
+                                                        ********************************************************************************************************************
+make[1]: *** [/home/ruthra/tools/oss-cad-suite/lib/python3.11/site-packages/cocotb-2.1.0.dev0+41564633-py3.11-linux-x64.egg/cocotb_tools/makefiles/simulators/Makefile.icarus:66: results.xml] Segmentation fault (core dumped)
+make[1]: *** Deleting file 'results.xml'
+make[1]: Leaving directory '/home/ruthra/litex-gemm/tb'
+make: *** [/home/ruthra/tools/oss-cad-suite/lib/python3.11/site-packages/cocotb-2.1.0.dev0+41564633-py3.11-linux-x64.egg/cocotb_tools/makefiles/Makefile.inc:17: sim] Error 2

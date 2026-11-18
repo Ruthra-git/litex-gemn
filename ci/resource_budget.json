@@ -1,0 +1,9 @@
+{
+  "tool": "yosys synth_ecp5, cell counts from the JSON netlist, top gemm_wb",
+  "baseline_lut4": {"4": 9686, "8": 9872, "16": 10125},
+  "budgets": {
+    "4":  {"lut4": 10700, "ff": 2000, "dsp": 4},
+    "8":  {"lut4": 10900, "ff": 2050, "dsp": 8},
+    "16": {"lut4": 11200, "ff": 2100, "dsp": 16}
+  }
+}

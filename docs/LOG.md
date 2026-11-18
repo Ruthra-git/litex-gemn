@@ -92,3 +92,24 @@ EOF
 - Yosys + nextpnr-ecp5 sweep over LANES 4/8/16 (3 seeds). v0.6 datapath was oversized (15,771 / 19,744 / 33,355 cells, 31-37 MHz; LANES=16 did not fit the 25F). Core v0.7 (operand prefetch, per-slot enables) cut logic to 10,220 / 10,442 / 10,767 cells and raised the estimated clock to 57-60 MHz.
 - Regression: 99 unit-test runs pass; SoC LANES=4 cycle-identical to Day 6; SoC LANES 8/16 pass and match the cycle model exactly (DMA counters 66/156/276 and 62/140/244; N=64 DMA 144,510 and 128,126 cycles).
 - Trade-off: LANES=8 is the knee (22 percent more throughput than LANES=4 for 2.2 percent more logic); LANES=16 adds 8 percent more for 3 percent more logic and a 4 percent lower clock. Open: overlap fetch with compute; where the remaining fixed logic cost sits (see report).
+
+## Day 9 — Verification and regression (2026-11-18)
+
+### Completed
+- Structural checks passed for LANES=4, 8 and 16.
+- Resource budgets passed for LUT4, FF and MULT18X18D.
+- SymbiYosys prove, BMC and cover tasks completed with PASS.
+- Ten formal cover points reached.
+- Cocotb regression: 99/99 functional test cases passed across core,
+  Wishbone and DMA configurations.
+- SoC log checker: 21/21 checks passed for each of LANES=4, 8 and 16.
+- Mutation checker initially reported 13/13 killed.
+
+### Limitations
+- Simulator segfault observed after Cocotb test completion.
+- Mutation classification requires correction before accepting the
+  reported 100% score as a confirmed result.
+- SoC checks used recorded Day 6 logs; a fresh CI SoC run remains pending.
+
+See docs/VERIFICATION.md for the requirement-to-evidence matrix
+and verification scope.

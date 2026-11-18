@@ -1,0 +1,147 @@
+================================================================================
+                 DAY 9 — GEMM UNIT TEST & REGRESSION RESULTS
+================================================================================
+
+Project       : LiteX-GEMM Accelerator
+Verification  : Cocotb + Icarus Verilog
+Environment   : OSS CAD Suite (WSL/Linux)
+RTL DUTs      : GEMM Core, Wishbone Wrapper, DMA Integration
+Configurations : LANES = 4, 8, 16
+
+1. REGRESSION OVERVIEW
+---------------------
+The Day 9 regression exercised three DUT configurations (core, Wishbone wrapper,
+and DMA integration) at three lane widths (4, 8, and 16), for a total of nine
+configuration runs.
+
+All nine runs reached the Cocotb final test summary. Every individual test was
+reported PASS, with zero functional failures and zero skipped tests.
+
+2. RESULTS BY DUT AND CONFIGURATION
+----------------------------------
+
+A) GEMM CORE
+
+Configuration   Tests   Passed   Failed   Skipped   Functional Result
+-------------   -----   ------   ------   -------   -----------------
+Core, L=4         9       9        0        0      PASS
+Core, L=8         9       9        0        0      PASS
+Core, L=16        9       9        0        0      PASS
+
+Core test coverage included:
+- Reset-state behavior
+- Corner cases
+- Randomized input vectors
+- Cycle-count verification
+- Start-while-busy behavior
+- Sticky done flag and clear behavior
+- Reset during operation
+- Accumulation operation
+- Accumulation mode latched at start
+
+B) WISHBONE WRAPPER (GEMM_WB)
+
+Configuration   Tests   Passed   Failed   Skipped   Functional Result
+-------------   -----   ------   ------   -------   -----------------
+WB, L=4          10      10        0        0      PASS
+WB, L=8          10      10        0        0      PASS
+WB, L=16         10      10        0        0      PASS
+
+Wishbone-wrapper test coverage included:
+- ID and information-register readback
+- Buffer readback and byte-enable behavior
+- C-buffer read-only behavior and unmapped-address handling
+- Tile computation through the bus compared with a golden result
+- Cycle-counter register
+- Accumulation through the bus
+- Interrupt behavior
+- Start request while busy
+- Buffer writes during busy without corruption
+- Soft reset during a run
+
+C) DMA INTEGRATION
+
+Configuration   Tests   Passed   Failed   Skipped   Functional Result
+-------------   -----   ------   ------   -------   -----------------
+DMA, L=4         14      14        0        0      PASS
+DMA, L=8         14      14        0        0      PASS
+DMA, L=16        14      14        0        0      PASS
+
+DMA test coverage included:
+- DMA register readback
+- Single-tile DMA execution
+- Matrix sizes N=4, 8, 16, and 32 compared against NumPy reference results
+- Accumulate-first operation
+- Alignment and parameter-error handling
+- Bus error during read
+- Bus error during write
+- Timeout handling
+- DMA interrupt
+- PIO accesses ignored during DMA
+- Memory-latency sweep (latencies 1, 2, 5, and 9)
+- Soft reset during DMA
+- DMA transfer and wait counters
+- Back-to-back execution cycle check
+
+3. FUNCTIONAL TEST SUMMARY
+-------------------------
+
+DUT / Configuration       Tests per run   Total tests   Functional failures
+-----------------------   -------------   -----------   -------------------
+Core: L=4, 8, 16                 9             27              0
+Wishbone: L=4, 8, 16            10             30              0
+DMA: L=4, 8, 16                  14             42              0
+---------------------------------------------------------------
+TOTAL                                           99              0
+
+Overall functional result: 99/99 test executions PASS; 0 FAIL; 0 SKIP.
+
+4. OBSERVED TOOLCHAIN / SIMULATOR LIMITATION
+--------------------------------------------
+In the captured runs, after Cocotb printed the completed test summary showing
+PASS counts equal to the total test count and FAIL=0, the simulator process
+terminated with:
+
+    Segmentation fault (core dumped)
+
+The failure occurred after the final test-summary output, not during the listed
+functional tests. The Make target then returned a non-zero exit status and
+removed results.xml.
+
+Observed versions/context from the logs:
+- Cocotb: 2.1.0 development build
+- Icarus Verilog: 14.0 development build
+- Python interpreter used by Cocotb: 3.11.6 (OSS CAD Suite bundled interpreter)
+- Simulator: Icarus Verilog with Cocotb VPI integration
+
+The post-summary segmentation fault is treated as a simulator/VPI/toolchain
+shutdown issue pending further investigation. The available logs do not establish
+its precise root cause. It must not be represented as an RTL functional failure,
+but it also means the simulator process did not exit cleanly and XML result-file
+completion was not reliable for these runs.
+
+5. KNOWN LIMITATION / VERIFICATION STATUS
+-----------------------------------------
+STATUS: FUNCTIONAL REGRESSION PASS — TOOLCHAIN EXIT/SHUTDOWN ISSUE OBSERVED
+
+- All nine DUT/lane configurations reached the final Cocotb test summary.
+- All 99 test executions reported PASS.
+- No functional test failures were reported.
+- The simulator subsequently segfaulted after the summary in the captured runs.
+- results.xml was deleted by the Make flow following the abnormal simulator exit.
+- Therefore, functional results are documented from the terminal summaries;
+  clean simulator termination and XML-based regression completion remain unresolved.
+
+This limitation should be retained in the verification record until the simulator,
+Cocotb/VPI environment, or shutdown behavior is corrected and the regression is
+re-run with clean process exits and valid result XML files.
+
+6. CONCLUSION
+-------------
+Day 9 successfully exercised the GEMM core, Wishbone wrapper, and DMA integration
+at LANES=4, 8, and 16. Functional verification completed with 99 PASS results
+and zero reported test failures. The remaining issue is an abnormal simulator
+termination after the test summaries, which is recorded as a toolchain/runtime
+limitation rather than a functional RTL test failure.
+
+

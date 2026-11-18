@@ -1,0 +1,60 @@
+name: nightly
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+jobs:
+  mutation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: YosysHQ/setup-oss-cad-suite@v3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install cocotb==1.9.2 numpy pytest
+      - run: python3 model/gemm_golden.py
+      - run: python3 scripts/mutation_check.py --lanes 4
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mutation-report
+          path: docs/day9_mutation.md
+
+  soc-sim:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: System packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends verilator gcc-riscv64-unknown-elf \
+            libevent-dev libjson-c-dev zlib1g-dev device-tree-compiler ninja-build meson python3-venv
+      - name: Install LiteX
+        run: |
+          mkdir -p $HOME/litex && cd $HOME/litex
+          python3 -m venv venv
+          . venv/bin/activate
+          wget -q https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
+          python3 litex_setup.py --init --install --config=standard
+          pip install meson ninja pexpect numpy
+          # TODO: pin the LiteX commit used for the reported results: git -C $HOME/litex/litex checkout <sha>
+      - name: Build, run and check LANES 4, 8, 16
+        run: |
+          . $HOME/litex/venv/bin/activate
+          for L in 4 8 16; do
+            GEMM_LANES=$L ./scripts/gen_soc.sh
+            ./scripts/build_fw.sh day6_main.c
+            python3 scripts/run_fw_sim.py --lanes $L --out build/ci_soc_L$L.log
+            python3 scripts/check_soc_log.py build/ci_soc_L$L.log --lanes $L
+          done
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soc-logs
+          path: build/ci_soc_L*.log
